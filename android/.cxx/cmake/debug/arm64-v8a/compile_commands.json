@@ -1,0 +1,13 @@
+[
+{
+  "directory": "/Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/arm64-v8a",
+  "command": "/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DNativeAdd_EXPORTS -I/Users/liuxingming/Downloads/OpenCV-android-sdk/sdk/native/jni/include -I/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/sources/android/cpufeatures  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o -c /Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp",
+  "file": "/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp"
+},
+
+{
+  "directory": "/Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/arm64-v8a",
+  "command": "/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -I/Users/liuxingming/Downloads/OpenCV-android-sdk/sdk/native/jni/include -I/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/sources/android/cpufeatures  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/cpufeatures.dir/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/sources/android/cpufeatures/cpu-features.c.o   -c /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/sources/android/cpufeatures/cpu-features.c",
+  "file": "/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/sources/android/cpufeatures/cpu-features.c"
+}
+]

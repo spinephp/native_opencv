@@ -1,0 +1,29 @@
+{
+  "buildFiles": [
+    "/Users/liuxingming/Documents/flutter/native_opencv/libs/native_add/CMakeLists.txt",
+    "/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/build/cmake/android.toolchain.cmake",
+    "/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/build/cmake/android-legacy.toolchain.cmake",
+    "/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/build/cmake/platforms.cmake",
+    "/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/build/cmake/compiler_id.cmake"
+  ],
+  "cleanCommands": [
+    "/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja -C \"/Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/arm64-v8a\" clean"
+  ],
+  "buildTargetsCommand": "/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja  -C \"/Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/arm64-v8a\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "NativeAdd-Debug-arm64-v8a": {
+      "artifactName": "NativeAdd",
+      "buildCommand": "/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja -C \"/Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/arm64-v8a\" NativeAdd",
+      "abi": "arm64-v8a",
+      "output": "/Users/liuxingming/Documents/flutter/native_opencv/android/build/intermediates/cmake/debug/obj/arm64-v8a/libNativeAdd.so",
+      "runtimeFiles": []
+    },
+    "cpufeatures-Debug-arm64-v8a": {
+      "artifactName": "cpufeatures",
+      "buildCommand": "/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja -C \"/Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/arm64-v8a\" cpufeatures",
+      "abi": "arm64-v8a",
+      "output": "/Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/arm64-v8a/libcpufeatures.a",
+      "runtimeFiles": []
+    }
+  }
+}

@@ -24,6 +24,10 @@ include_directories(${OPENCV_INCLUDE_DIR})
 find_library(log-lib log)
 
 # 创建一个静态库 calib3d 直接引用 libopencv_calib3d.a
+
+add_library(highgui STATIC IMPORTED)
+set_target_properties(highgui PROPERTIES IMPORTED_LOCATION ${OPENCV_STATIC_LIB_DIR}/libopencv_highgui.a)
+
 add_library(calib3d STATIC IMPORTED)
 set_target_properties(calib3d PROPERTIES IMPORTED_LOCATION ${OPENCV_STATIC_LIB_DIR}/libopencv_calib3d.a)
 
@@ -54,9 +58,6 @@ set_target_properties(ml PROPERTIES IMPORTED_LOCATION ${OPENCV_STATIC_LIB_DIR}/l
 add_library(photo STATIC IMPORTED)
 set_target_properties(photo PROPERTIES IMPORTED_LOCATION ${OPENCV_STATIC_LIB_DIR}/libopencv_photo.a)
 
-#add_library(shape STATIC IMPORTED)
-#set_target_properties(shape PROPERTIES IMPORTED_LOCATION ${OPENCV_STATIC_LIB_DIR}/libopencv_shape.a)
-
 add_library(objdetect STATIC IMPORTED)
 set_target_properties(objdetect PROPERTIES IMPORTED_LOCATION ${OPENCV_STATIC_LIB_DIR}/libopencv_objdetect.a)
 
@@ -65,9 +66,6 @@ set_target_properties(stitching PROPERTIES IMPORTED_LOCATION ${OPENCV_STATIC_LIB
 
 include(AndroidNdkModules)
 android_ndk_import_module_cpufeatures()
-#add_library(cpufeatures-lib STATIC IMPORTED)
-#set_target_properties(cpufeatures-lib PROPERTIES IMPORTED_LOCATION
-#                       ${lib_output_dir}/libcpufeatures.a)
 
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 set(THREADS_PREFER_PTHREAD_FLAG TRUE)
@@ -96,18 +94,18 @@ add_library(
     # Provides a relative path to your source file(s).
     # 资源文件，可以多个，
     # 资源路径是相对路径，相对于本CMakeLists.txt所在目录
-    "./native_add.cpp"
+    "../../ios/Classes/native_add.cpp"
 )
 
 target_link_libraries(${PROJECT_NAME}
         ${log-lib}
-        core
+        core highgui
         # note: You can import whatever other modules you like (e.g. dnn)
         tbb # note: need to be placed *after* "core"
         cpufeatures
-        #cpufeatures-lib
         ittnotify
         tegra_hal # NOTE if still have error, check abiFilters, since tegra does *not* exist in x86.
+
         Threads::Threads
         -lz
         )

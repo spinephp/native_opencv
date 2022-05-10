@@ -1,0 +1,4 @@
+/Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/NativeAdd.dir
+/Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+/Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/cpufeatures.dir

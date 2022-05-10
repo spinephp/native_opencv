@@ -46,16 +46,20 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags "-frtti -fexceptions -std=c++11"
+                abiFilters 'armeabi-v7a', 'arm64-v8a'
+
+                // Shared runtime for shared libraries
+                // arguments "-DANDROID_STL=c++_shared"
 
                 // C语言使用GNU17标准
                 // cFlags "-std=gnu17", "-Os"
             }
 
-            ndk {
-                // Specifies the ABI configurations of your native
-                // libraries Gradle should build and package with your APK.
-                abiFilters 'armeabi-v7a', 'arm64-v8a'
-            }
+            // ndk {
+            //     // Specifies the ABI configurations of your native
+            //     // libraries Gradle should build and package with your APK.
+            //     abiFilters 'armeabi-v7a', 'arm64-v8a'
+            // }
         }
     }
 	externalNativeBuild {
