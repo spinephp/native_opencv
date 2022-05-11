@@ -50,7 +50,8 @@ class ImagePainter extends CustomPainter {
 
 class ClipAreaPainter extends CustomPainter {
   final List<Offset> offsets;
-  ClipAreaPainter(this.offsets);
+  final int selected;
+  ClipAreaPainter(this.offsets, this.selected);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -77,23 +78,32 @@ class ClipAreaPainter extends CustomPainter {
     // }
     // points2.add(points2[0]);
     if (offsets.isNotEmpty) {
+      paint.strokeWidth = 2;
       paint.color = Colors.red;
-      paint.style = PaintingStyle.stroke;
+
       canvas.drawPoints(
           ui.PointMode.polygon, offsets, paint); //draw the clip box
+
+      //draw the drag point
       double radius = 15;
-      paint.strokeWidth = 2;
-      canvas.drawCircle(offsets[0], radius, paint); //draw the drag point
-      canvas.drawCircle(offsets[1], radius, paint);
-      canvas.drawCircle(offsets[2], radius, paint);
-//      canvas.drawLine(Offset(points2[2].dx-radius, points2[2].dy-radius), Offset(points2[2].dx+radius, points2[2].dy+radius), paint);
-      canvas.drawCircle(offsets[3], radius, paint);
+      for (int i = 0; i < 4; i++) {
+        paint.style = i == selected ? PaintingStyle.fill : PaintingStyle.stroke;
+        canvas.drawCircle(offsets[i], radius, paint);
+      }
     }
+  }
+
+  bool equal(ClipAreaPainter oldDelegate) {
+    bool result = true;
+    for (int i = 0; i < offsets.length; i++) {
+      if (offsets[i] != oldDelegate.offsets[i]) return true;
+    }
+    return oldDelegate.selected != selected;
   }
 
   @override
   bool shouldRepaint(ClipAreaPainter oldDelegate) {
-    return true;
+    return equal(oldDelegate);
     //oldDelegate.offsets[0] != offsets[0];
   }
 }
@@ -252,7 +262,8 @@ class _ImageAreaWidgetState extends State<ImageAreaWidget> {
                   },
                 )
               : null,
-          foregroundPainter: isEditing ? ClipAreaPainter(offsets) : null,
+          foregroundPainter:
+              isEditing ? ClipAreaPainter(offsets, dragIndex) : null,
           // size: Size(widget.width, imgHeight * scale),
         )),
         Padding(
