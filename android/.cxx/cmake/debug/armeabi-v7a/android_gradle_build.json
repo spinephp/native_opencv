@@ -1,13 +1,15 @@
 {
   "stringTable": {
     "0": "/Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a",
-    "1": "--target=armv7-none-linux-androideabi21 --gcc-toolchain=/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DNativeAdd_EXPORTS -I/Users/liuxingming/Downloads/OpenCV-android-sdk/sdk/native/jni/include -I/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/sources/android/cpufeatures -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -frtti -fexceptions -std=c++11 -O0 -fno-limit-debug-info -fPIC",
-    "2": "--target=armv7-none-linux-androideabi21 --gcc-toolchain=/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -I/Users/liuxingming/Downloads/OpenCV-android-sdk/sdk/native/jni/include -I/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/sources/android/cpufeatures -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -O0 -fno-limit-debug-info -fPIC"
+    "1": "--target=armv7-none-linux-androideabi21 --sysroot=/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DNativeAdd_EXPORTS -I/Users/liuxingming/Downloads/OpenCV-android-sdk/sdk/native/jni/include -I/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/sources/android/cpufeatures -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -frtti -fexceptions -std=c++11 -fno-limit-debug-info -fPIC",
+    "2": "--target=armv7-none-linux-androideabi21 --sysroot=/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -I/Users/liuxingming/Downloads/OpenCV-android-sdk/sdk/native/jni/include -I/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/sources/android/cpufeatures -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -fno-limit-debug-info -fPIC"
   },
   "buildFiles": [
     "/Users/liuxingming/Documents/flutter/native_opencv/libs/native_add/CMakeLists.txt",
-    "/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/build/cmake/android.toolchain.cmake",
-    "/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/build/cmake/platforms.cmake"
+    "/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/build/cmake/android.toolchain.cmake",
+    "/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/build/cmake/android-legacy.toolchain.cmake",
+    "/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/build/cmake/platforms.cmake",
+    "/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/build/cmake/compiler_id.cmake"
   ],
   "cleanCommands": [
     "/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja -C \"/Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a\" clean"
@@ -17,7 +19,7 @@
     "NativeAdd-Debug-armeabi-v7a": {
       "buildCommand": "/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja -C \"/Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a\" NativeAdd",
       "buildType": "debug",
-      "toolchain": "983396992",
+      "toolchain": "2775892544",
       "abi": "armeabi-v7a",
       "artifactName": "NativeAdd",
       "files": [
@@ -28,18 +30,18 @@
         }
       ],
       "headers": [],
-      "output": "/Users/liuxingming/Documents/flutter/native_opencv/example/build/native_opencv/intermediates/cmake/debug/obj/armeabi-v7a/libNativeAdd.so",
+      "output": "/Users/liuxingming/Documents/flutter/native_opencv/android/build/intermediates/cmake/debug/obj/armeabi-v7a/libNativeAdd.so",
       "runtimeFiles": []
     },
     "cpufeatures-Debug-armeabi-v7a": {
       "buildCommand": "/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja -C \"/Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a\" cpufeatures",
       "buildType": "debug",
-      "toolchain": "983396992",
+      "toolchain": "2775892544",
       "abi": "armeabi-v7a",
       "artifactName": "cpufeatures",
       "files": [
         {
-          "src": "/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/sources/android/cpufeatures/cpu-features.c",
+          "src": "/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/sources/android/cpufeatures/cpu-features.c",
           "flagsOrdinal": 2,
           "workingDirectoryOrdinal": 0
         }
@@ -49,9 +51,9 @@
     }
   },
   "toolchains": {
-    "983396992": {
-      "cCompilerExecutable": "/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
-      "cppCompilerExecutable": "/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+    "2775892544": {
+      "cCompilerExecutable": "/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+      "cppCompilerExecutable": "/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
     }
   },
   "cFileExtensions": [

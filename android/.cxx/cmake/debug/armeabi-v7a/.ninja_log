@@ -1,16 +1,4 @@
 # ninja log v5
-3	610	1650873049	CMakeFiles/cpufeatures.dir/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/sources/android/cpufeatures/cpu-features.c.o	c3f0f45eb6b78a60
-614	891	1650873049	libcpufeatures.a	348e95677a81fb52
-0	2384	1650873050	CMakeFiles/NativeAdd.dir/native_add.cpp.o	a2bc910cdcc95741
-2385	2930	1650873051	/Users/liuxingming/Documents/flutter/native_opencv/example/build/native_opencv/intermediates/cmake/debug/obj/armeabi-v7a/libNativeAdd.so	ae9b9591db29afdf
-1	2323	1650873300	CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o	d1fb55b24218c659
-2323	3028	1650873301	/Users/liuxingming/Documents/flutter/native_opencv/example/build/native_opencv/intermediates/cmake/debug/obj/armeabi-v7a/libNativeAdd.so	317d40e5dc0f5c2f
-1	1390	1650879536	/Users/liuxingming/Documents/flutter/native_opencv/example/build/native_opencv/intermediates/cmake/debug/obj/armeabi-v7a/libNativeAdd.so	317d40e5dc0f5c2f
-2	1290	1650882177	/Users/liuxingming/Documents/flutter/native_opencv/example/build/native_opencv/intermediates/cmake/debug/obj/armeabi-v7a/libNativeAdd.so	317d40e5dc0f5c2f
-3	5036	1650899503	CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o	d1fb55b24218c659
-5036	6411	1650899504	/Users/liuxingming/Documents/flutter/native_opencv/example/build/native_opencv/intermediates/cmake/debug/obj/armeabi-v7a/libNativeAdd.so	317d40e5dc0f5c2f
-4	1411	1650939976	/Users/liuxingming/Documents/flutter/native_opencv/example/build/native_opencv/intermediates/cmake/debug/obj/armeabi-v7a/libNativeAdd.so	317d40e5dc0f5c2f
-92	2703	1650948940	CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o	d1fb55b24218c659
-22	2372	1650963172	CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o	d1fb55b24218c659
-67	2216	1650986465	CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o	d1fb55b24218c659
-2216	2802	1650986466	/Users/liuxingming/Documents/flutter/native_opencv/example/build/native_opencv/intermediates/cmake/debug/obj/armeabi-v7a/libNativeAdd.so	8f69c3195e8c6e5f
+5	443	1652279131	CMakeFiles/cpufeatures.dir/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/sources/android/cpufeatures/cpu-features.c.o	e2e8e34920a06fdc
+445	1596	1652279132	libcpufeatures.a	b9b763bd0f328199
+5	2886	1652279133	CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o	d8e0ea8ffce979fb

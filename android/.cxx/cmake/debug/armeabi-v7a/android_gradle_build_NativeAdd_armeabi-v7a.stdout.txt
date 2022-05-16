@@ -1,2 +1,76 @@
 ninja: Entering directory `/Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a'
-ninja: no work to do.
+[1/4] Building C object CMakeFiles/cpufeatures.dir/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/sources/android/cpufeatures/cpu-features.c.o
+[2/4] Linking C static library libcpufeatures.a
+[3/4] Building CXX object CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o
+[4/4] Linking CXX shared library /Users/liuxingming/Documents/flutter/native_opencv/android/build/intermediates/cmake/debug/obj/armeabi-v7a/libNativeAdd.so
+FAILED: /Users/liuxingming/Documents/flutter/native_opencv/android/build/intermediates/cmake/debug/obj/armeabi-v7a/libNativeAdd.so 
+: && /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi21 --sysroot=/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -fPIC -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-limit-debug-info  -static-libstdc++ -Wl,--build-id=sha1 -Wl,--no-rosegment -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments -shared -Wl,-soname,libNativeAdd.so -o /Users/liuxingming/Documents/flutter/native_opencv/android/build/intermediates/cmake/debug/obj/armeabi-v7a/libNativeAdd.so CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o  -llog /Users/liuxingming/Downloads/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_core.a /Users/liuxingming/Downloads/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_highgui.a /Users/liuxingming/Downloads/OpenCV-android-sdk/sdk/native/3rdparty/libs/armeabi-v7a/libtbb.a libcpufeatures.a /Users/liuxingming/Downloads/OpenCV-android-sdk/sdk/native/3rdparty/libs/armeabi-v7a/libittnotify.a /Users/liuxingming/Downloads/OpenCV-android-sdk/sdk/native/3rdparty/libs/armeabi-v7a/libtegra_hal.a -lz -ldl -latomic -lm && :
+ld: error: undefined symbol: cv::imdecode(cv::_InputArray const&, int)
+>>> referenced by native_add.cpp:60 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:60)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(opencv_decodeImage(unsigned char*, unsigned int*))
+
+ld: error: undefined symbol: cv::boundingRect(cv::_InputArray const&)
+>>> referenced by native_add.cpp:84 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:84)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(findLargestSquare(std::__ndk1::vector<std::__ndk1::vector<cv::Point_<int>, std::__ndk1::allocator<cv::Point_<int> > >, std::__ndk1::allocator<std::__ndk1::vector<cv::Point_<int>, std::__ndk1::allocator<cv::Point_<int> > > > > const&, std::__ndk1::vector<cv::Point_<int>, std::__ndk1::allocator<cv::Point_<int> > >&))
+
+ld: error: undefined symbol: cv::cvtColor(cv::_InputArray const&, cv::_OutputArray const&, int, int)
+>>> referenced by native_add.cpp:192 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:192)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(draw_quadrangle(cv::Mat&, void (*)(FPoint*, int)))
+
+ld: error: undefined symbol: cv::blur(cv::_InputArray const&, cv::_OutputArray const&, cv::Size_<int>, cv::Point_<int>, int)
+>>> referenced by native_add.cpp:197 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:197)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(draw_quadrangle(cv::Mat&, void (*)(FPoint*, int)))
+
+ld: error: undefined symbol: cv::erode(cv::_InputArray const&, cv::_OutputArray const&, cv::_InputArray const&, cv::Point_<int>, int, int, cv::Scalar_<double> const&)
+>>> referenced by native_add.cpp:199 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:199)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(draw_quadrangle(cv::Mat&, void (*)(FPoint*, int)))
+
+ld: error: undefined symbol: cv::Canny(cv::_InputArray const&, cv::_OutputArray const&, double, double, int, bool)
+>>> referenced by native_add.cpp:203 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:203)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(draw_quadrangle(cv::Mat&, void (*)(FPoint*, int)))
+
+ld: error: undefined symbol: cv::dilate(cv::_InputArray const&, cv::_OutputArray const&, cv::_InputArray const&, cv::Point_<int>, int, int, cv::Scalar_<double> const&)
+>>> referenced by native_add.cpp:205 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:205)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(draw_quadrangle(cv::Mat&, void (*)(FPoint*, int)))
+
+ld: error: undefined symbol: cv::findContours(cv::_InputArray const&, cv::_OutputArray const&, int, int, cv::Point_<int>)
+>>> referenced by native_add.cpp:209 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:209)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(draw_quadrangle(cv::Mat&, void (*)(FPoint*, int)))
+
+ld: error: undefined symbol: cv::convexHull(cv::_InputArray const&, cv::_OutputArray const&, bool, bool)
+>>> referenced by native_add.cpp:216 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:216)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(draw_quadrangle(cv::Mat&, void (*)(FPoint*, int)))
+
+ld: error: undefined symbol: cv::arcLength(cv::_InputArray const&, bool)
+>>> referenced by native_add.cpp:218 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:218)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(draw_quadrangle(cv::Mat&, void (*)(FPoint*, int)))
+>>> referenced by native_add.cpp:248 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:248)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(draw_quadrangle(cv::Mat&, void (*)(FPoint*, int)))
+
+ld: error: undefined symbol: cv::approxPolyDP(cv::_InputArray const&, cv::_OutputArray const&, double, bool)
+>>> referenced by native_add.cpp:218 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:218)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(draw_quadrangle(cv::Mat&, void (*)(FPoint*, int)))
+>>> referenced by native_add.cpp:246 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:246)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(draw_quadrangle(cv::Mat&, void (*)(FPoint*, int)))
+
+ld: error: undefined symbol: cv::contourArea(cv::_InputArray const&, bool)
+>>> referenced by native_add.cpp:220 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:220)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(draw_quadrangle(cv::Mat&, void (*)(FPoint*, int)))
+
+ld: error: undefined symbol: cv::isContourConvex(cv::_InputArray const&)
+>>> referenced by native_add.cpp:221 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:221)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(draw_quadrangle(cv::Mat&, void (*)(FPoint*, int)))
+
+ld: error: undefined symbol: cv::getPerspectiveTransform(cv::_InputArray const&, cv::_InputArray const&, int)
+>>> referenced by native_add.cpp:326 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:326)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(square_quadrangle(cv::Mat&, FPoint*, double))
+
+ld: error: undefined symbol: cv::warpPerspective(cv::_InputArray const&, cv::_OutputArray const&, cv::_InputArray const&, cv::Size_<int>, int, int, cv::Scalar_<double> const&)
+>>> referenced by native_add.cpp:327 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:327)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(square_quadrangle(cv::Mat&, FPoint*, double))
+
+ld: error: undefined symbol: cv::imencode(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> > const&, cv::_InputArray const&, std::__ndk1::vector<unsigned char, std::__ndk1::allocator<unsigned char> >&, std::__ndk1::vector<int, std::__ndk1::allocator<int> > const&)
+>>> referenced by native_add.cpp:363 (/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp:363)
+>>>               CMakeFiles/NativeAdd.dir/Users/liuxingming/Documents/flutter/native_opencv/ios/Classes/native_add.cpp.o:(square_image)
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+ninja: build stopped: subcommand failed.

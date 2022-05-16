@@ -3,63 +3,45 @@ The host system is: Darwin - 21.4.0 - x86_64
 Determining if the C compiler works passed with the following output:
 Change Dir: /Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/CMakeTmp
 
-Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_050b1"
-[1/2] Building C object CMakeFiles/cmTC_050b1.dir/testCCompiler.c.o
-[2/2] Linking C executable cmTC_050b1
+Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_baf20"
+[1/2] Building C object CMakeFiles/cmTC_baf20.dir/testCCompiler.c.o
+[2/2] Linking C executable cmTC_baf20
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/CMakeTmp
 
-Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_81833"
-[1/2] Building C object CMakeFiles/cmTC_81833.dir/CMakeCCompilerABI.c.o
-[2/2] Linking C executable cmTC_81833
-Android (6317467 based on r365631c1) clang version 9.0.8 (https://android.googlesource.com/toolchain/llvm-project e0caee08e5f09b374a27a676d04978c81fcb1928) (based on LLVM 9.0.8svn)
+Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_f5054"
+[1/2] Building C object CMakeFiles/cmTC_f5054.dir/CMakeCCompilerABI.c.o
+[2/2] Linking C executable cmTC_f5054
+Android (8075178, based on r437112b) clang version 14.0.1 (https://android.googlesource.com/toolchain/llvm-project 8671348b81b95fc603505dfc881b45103bee1731)
 Target: armv7-none-linux-android21
 Thread model: posix
-InstalledDir: /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/bin
-Found candidate GCC installation: /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x
-Selected GCC installation: /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x
-Candidate multilib: thumb;@mthumb
-Candidate multilib: armv7-a;@march=armv7-a
-Candidate multilib: armv7-a/thumb;@march=armv7-a@mthumb
-Candidate multilib: .;
-Selected multilib: armv7-a/thumb;@march=armv7-a@mthumb
- "/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/bin/ld" --sysroot=/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -pie -z noexecstack -EL --warn-shared-textrel -z now -z relro -X --hash-style=both --enable-new-dtags --eh-frame-hdr -m armelf_linux_eabi -dynamic-linker /system/bin/linker -o cmTC_81833 /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.8/lib/linux/arm -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/armv7-a/thumb -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/../lib/armv7-a/thumb -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21 -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/../../lib -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/armv7-a/thumb -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib --exclude-libs libgcc.a --exclude-libs libgcc_real.a --exclude-libs libatomic.a --build-id --fatal-warnings --exclude-libs libunwind.a --no-undefined --gc-sections CMakeFiles/cmTC_81833.dir/CMakeCCompilerABI.c.o -lgcc -ldl -lc -lgcc -ldl /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o
+InstalledDir: /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/bin
+ "/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/bin/ld" --sysroot=/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -pie -z noexecstack -EL --warn-shared-textrel -z now -z relro -z max-page-size=4096 -X --hash-style=both --enable-new-dtags --eh-frame-hdr -m armelf_linux_eabi -dynamic-linker /system/bin/linker -o cmTC_f5054 /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/arm -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21 -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib --build-id=sha1 --no-rosegment --fatal-warnings --no-undefined --gc-sections CMakeFiles/cmTC_f5054.dir/CMakeCCompilerABI.c.o /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a -l:libunwind.a -ldl -lc /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a -l:libunwind.a -ldl /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o
 
 
 Parsed C implicit link information from above output:
-  link line regex: [^( *|.*[/\])(arm-linux-androideabi-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  link line regex: [^( *|.*[/\])(CMAKE_LINKER-NOTFOUND|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_81833"]
-  ignore line: [[1/2] Building C object CMakeFiles/cmTC_81833.dir/CMakeCCompilerABI.c.o]
-  ignore line: [[2/2] Linking C executable cmTC_81833]
-  ignore line: [Android (6317467 based on r365631c1) clang version 9.0.8 (https://android.googlesource.com/toolchain/llvm-project e0caee08e5f09b374a27a676d04978c81fcb1928) (based on LLVM 9.0.8svn)]
+  ignore line: [Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_f5054"]
+  ignore line: [[1/2] Building C object CMakeFiles/cmTC_f5054.dir/CMakeCCompilerABI.c.o]
+  ignore line: [[2/2] Linking C executable cmTC_f5054]
+  ignore line: [Android (8075178, based on r437112b) clang version 14.0.1 (https://android.googlesource.com/toolchain/llvm-project 8671348b81b95fc603505dfc881b45103bee1731)]
   ignore line: [Target: armv7-none-linux-android21]
   ignore line: [Thread model: posix]
-  ignore line: [InstalledDir: /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/bin]
-  ignore line: [Found candidate GCC installation: /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x]
-  ignore line: [Selected GCC installation: /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x]
-  ignore line: [Candidate multilib: thumb]
-  ignore line: [@mthumb]
-  ignore line: [Candidate multilib: armv7-a]
-  ignore line: [@march=armv7-a]
-  ignore line: [Candidate multilib: armv7-a/thumb]
-  ignore line: [@march=armv7-a@mthumb]
-  ignore line: [Candidate multilib: .]
-  ignore line: []
-  ignore line: [Selected multilib: armv7-a/thumb]
-  ignore line: [@march=armv7-a@mthumb]
-  link line: [ "/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/bin/ld" --sysroot=/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -pie -z noexecstack -EL --warn-shared-textrel -z now -z relro -X --hash-style=both --enable-new-dtags --eh-frame-hdr -m armelf_linux_eabi -dynamic-linker /system/bin/linker -o cmTC_81833 /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.8/lib/linux/arm -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/armv7-a/thumb -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/../lib/armv7-a/thumb -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21 -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/../../lib -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/armv7-a/thumb -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib --exclude-libs libgcc.a --exclude-libs libgcc_real.a --exclude-libs libatomic.a --build-id --fatal-warnings --exclude-libs libunwind.a --no-undefined --gc-sections CMakeFiles/cmTC_81833.dir/CMakeCCompilerABI.c.o -lgcc -ldl -lc -lgcc -ldl /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o]
-    arg [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/bin/ld] ==> ignore
-    arg [--sysroot=/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot] ==> ignore
+  ignore line: [InstalledDir: /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/bin]
+  link line: [ "/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/bin/ld" --sysroot=/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -pie -z noexecstack -EL --warn-shared-textrel -z now -z relro -z max-page-size=4096 -X --hash-style=both --enable-new-dtags --eh-frame-hdr -m armelf_linux_eabi -dynamic-linker /system/bin/linker -o cmTC_f5054 /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/arm -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21 -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib --build-id=sha1 --no-rosegment --fatal-warnings --no-undefined --gc-sections CMakeFiles/cmTC_f5054.dir/CMakeCCompilerABI.c.o /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a -l:libunwind.a -ldl -lc /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a -l:libunwind.a -ldl /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o]
+    arg [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/bin/ld] ==> ignore
+    arg [--sysroot=/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot] ==> ignore
     arg [-pie] ==> ignore
     arg [-znoexecstack] ==> ignore
     arg [-EL] ==> ignore
     arg [--warn-shared-textrel] ==> ignore
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
+    arg [-zmax-page-size=4096] ==> ignore
     arg [-X] ==> ignore
     arg [--hash-style=both] ==> ignore
     arg [--enable-new-dtags] ==> ignore
@@ -69,47 +51,36 @@ Parsed C implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/system/bin/linker] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_81833] ==> ignore
-    arg [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o] ==> ignore
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.8/lib/linux/arm] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.8/lib/linux/arm]
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/armv7-a/thumb] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/armv7-a/thumb]
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/../lib/armv7-a/thumb] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/../lib/armv7-a/thumb]
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21]
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi]
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib]
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/../../lib] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/../../lib]
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/armv7-a/thumb] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/armv7-a/thumb]
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
-    arg [--exclude-libs] ==> ignore
-    arg [libgcc.a] ==> ignore
-    arg [--exclude-libs] ==> ignore
-    arg [libgcc_real.a] ==> ignore
-    arg [--exclude-libs] ==> ignore
-    arg [libatomic.a] ==> ignore
-    arg [--build-id] ==> ignore
+    arg [cmTC_f5054] ==> ignore
+    arg [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o] ==> ignore
+    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/arm] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/arm]
+    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21]
+    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi]
+    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib]
+    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
+    arg [--build-id=sha1] ==> ignore
+    arg [--no-rosegment] ==> ignore
     arg [--fatal-warnings] ==> ignore
-    arg [--exclude-libs] ==> ignore
-    arg [libunwind.a] ==> ignore
     arg [--no-undefined] ==> ignore
     arg [--gc-sections] ==> ignore
-    arg [CMakeFiles/cmTC_81833.dir/CMakeCCompilerABI.c.o] ==> ignore
-    arg [-lgcc] ==> lib [gcc]
+    arg [CMakeFiles/cmTC_f5054.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a] ==> lib [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a]
+    arg [-l:libunwind.a] ==> lib [-l:libunwind.a]
     arg [-ldl] ==> lib [dl]
     arg [-lc] ==> lib [c]
-    arg [-lgcc] ==> lib [gcc]
+    arg [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a] ==> lib [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a]
+    arg [-l:libunwind.a] ==> lib [-l:libunwind.a]
     arg [-ldl] ==> lib [dl]
-    arg [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o] ==> ignore
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.8/lib/linux/arm] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.8/lib/linux/arm]
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/armv7-a/thumb] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/armv7-a/thumb]
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/../lib/armv7-a/thumb] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/arm-linux-androideabi/lib/armv7-a/thumb]
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21]
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi]
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/../../lib] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/armv7-a/thumb] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/arm-linux-androideabi/lib/armv7-a/thumb]
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
-  implicit libs: [gcc;dl;c;gcc;dl]
-  implicit dirs: [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.8/lib/linux/arm;/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/armv7-a/thumb;/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/arm-linux-androideabi/lib/armv7-a/thumb;/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21;/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi;/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
+    arg [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o] ==> ignore
+  remove lib [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a]
+  remove lib [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a]
+  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/arm] ==> [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/arm]
+  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21] ==> [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21]
+  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi] ==> [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi]
+  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib] ==> [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
+  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib] ==> [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
+  implicit libs: [-l:libunwind.a;dl;c;-l:libunwind.a;dl]
+  implicit dirs: [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/arm;/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21;/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi;/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
   implicit fwks: []
 
 
@@ -118,9 +89,9 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/CMakeTmp
 
-Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_a118c"
-[1/2] Building C object CMakeFiles/cmTC_a118c.dir/feature_tests.c.o
-[2/2] Linking C executable cmTC_a118c
+Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_38109"
+[1/2] Building C object CMakeFiles/cmTC_38109.dir/feature_tests.c.o
+[2/2] Linking C executable cmTC_38109
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -132,9 +103,9 @@ Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/b
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/CMakeTmp
 
-Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_ce4a1"
-[1/2] Building C object CMakeFiles/cmTC_ce4a1.dir/feature_tests.c.o
-[2/2] Linking C executable cmTC_ce4a1
+Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_0c8aa"
+[1/2] Building C object CMakeFiles/cmTC_0c8aa.dir/feature_tests.c.o
+[2/2] Linking C executable cmTC_0c8aa
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -146,9 +117,9 @@ Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/b
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/CMakeTmp
 
-Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_beba1"
-[1/2] Building C object CMakeFiles/cmTC_beba1.dir/feature_tests.c.o
-[2/2] Linking C executable cmTC_beba1
+Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_a8502"
+[1/2] Building C object CMakeFiles/cmTC_a8502.dir/feature_tests.c.o
+[2/2] Linking C executable cmTC_a8502
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -158,63 +129,45 @@ Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/b
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/CMakeTmp
 
-Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_fa6c9"
-[1/2] Building CXX object CMakeFiles/cmTC_fa6c9.dir/testCXXCompiler.cxx.o
-[2/2] Linking CXX executable cmTC_fa6c9
+Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_c0ea6"
+[1/2] Building CXX object CMakeFiles/cmTC_c0ea6.dir/testCXXCompiler.cxx.o
+[2/2] Linking CXX executable cmTC_c0ea6
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/CMakeTmp
 
-Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_2a399"
-[1/2] Building CXX object CMakeFiles/cmTC_2a399.dir/CMakeCXXCompilerABI.cpp.o
-[2/2] Linking CXX executable cmTC_2a399
-Android (6317467 based on r365631c1) clang version 9.0.8 (https://android.googlesource.com/toolchain/llvm-project e0caee08e5f09b374a27a676d04978c81fcb1928) (based on LLVM 9.0.8svn)
+Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_1a00f"
+[1/2] Building CXX object CMakeFiles/cmTC_1a00f.dir/CMakeCXXCompilerABI.cpp.o
+[2/2] Linking CXX executable cmTC_1a00f
+Android (8075178, based on r437112b) clang version 14.0.1 (https://android.googlesource.com/toolchain/llvm-project 8671348b81b95fc603505dfc881b45103bee1731)
 Target: armv7-none-linux-android21
 Thread model: posix
-InstalledDir: /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/bin
-Found candidate GCC installation: /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x
-Selected GCC installation: /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x
-Candidate multilib: thumb;@mthumb
-Candidate multilib: armv7-a;@march=armv7-a
-Candidate multilib: armv7-a/thumb;@march=armv7-a@mthumb
-Candidate multilib: .;
-Selected multilib: armv7-a/thumb;@march=armv7-a@mthumb
- "/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/bin/ld" --sysroot=/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -pie -z noexecstack -EL --warn-shared-textrel -z now -z relro -X --hash-style=both --enable-new-dtags --eh-frame-hdr -m armelf_linux_eabi -dynamic-linker /system/bin/linker -o cmTC_2a399 /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.8/lib/linux/arm -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/armv7-a/thumb -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/../lib/armv7-a/thumb -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21 -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/../../lib -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/armv7-a/thumb -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib --exclude-libs libgcc.a --exclude-libs libgcc_real.a --exclude-libs libatomic.a --build-id --fatal-warnings --exclude-libs libunwind.a --no-undefined --gc-sections CMakeFiles/cmTC_2a399.dir/CMakeCXXCompilerABI.cpp.o -Bstatic -lc++ -Bdynamic -lm -lgcc -ldl -lc -lgcc -ldl /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o
+InstalledDir: /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/bin
+ "/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/bin/ld" --sysroot=/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -pie -z noexecstack -EL --warn-shared-textrel -z now -z relro -z max-page-size=4096 -X --hash-style=both --enable-new-dtags --eh-frame-hdr -m armelf_linux_eabi -dynamic-linker /system/bin/linker -o cmTC_1a00f /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/arm -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21 -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib --build-id=sha1 --no-rosegment --fatal-warnings --no-undefined --gc-sections CMakeFiles/cmTC_1a00f.dir/CMakeCXXCompilerABI.cpp.o -Bstatic -lc++ -Bdynamic -lm /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a -l:libunwind.a -ldl -lc /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a -l:libunwind.a -ldl /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o
 
 
 Parsed CXX implicit link information from above output:
-  link line regex: [^( *|.*[/\])(arm-linux-androideabi-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  link line regex: [^( *|.*[/\])(CMAKE_LINKER-NOTFOUND|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_2a399"]
-  ignore line: [[1/2] Building CXX object CMakeFiles/cmTC_2a399.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [[2/2] Linking CXX executable cmTC_2a399]
-  ignore line: [Android (6317467 based on r365631c1) clang version 9.0.8 (https://android.googlesource.com/toolchain/llvm-project e0caee08e5f09b374a27a676d04978c81fcb1928) (based on LLVM 9.0.8svn)]
+  ignore line: [Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_1a00f"]
+  ignore line: [[1/2] Building CXX object CMakeFiles/cmTC_1a00f.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [[2/2] Linking CXX executable cmTC_1a00f]
+  ignore line: [Android (8075178, based on r437112b) clang version 14.0.1 (https://android.googlesource.com/toolchain/llvm-project 8671348b81b95fc603505dfc881b45103bee1731)]
   ignore line: [Target: armv7-none-linux-android21]
   ignore line: [Thread model: posix]
-  ignore line: [InstalledDir: /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/bin]
-  ignore line: [Found candidate GCC installation: /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x]
-  ignore line: [Selected GCC installation: /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x]
-  ignore line: [Candidate multilib: thumb]
-  ignore line: [@mthumb]
-  ignore line: [Candidate multilib: armv7-a]
-  ignore line: [@march=armv7-a]
-  ignore line: [Candidate multilib: armv7-a/thumb]
-  ignore line: [@march=armv7-a@mthumb]
-  ignore line: [Candidate multilib: .]
-  ignore line: []
-  ignore line: [Selected multilib: armv7-a/thumb]
-  ignore line: [@march=armv7-a@mthumb]
-  link line: [ "/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/bin/ld" --sysroot=/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -pie -z noexecstack -EL --warn-shared-textrel -z now -z relro -X --hash-style=both --enable-new-dtags --eh-frame-hdr -m armelf_linux_eabi -dynamic-linker /system/bin/linker -o cmTC_2a399 /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.8/lib/linux/arm -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/armv7-a/thumb -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/../lib/armv7-a/thumb -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21 -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/../../lib -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/armv7-a/thumb -L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib --exclude-libs libgcc.a --exclude-libs libgcc_real.a --exclude-libs libatomic.a --build-id --fatal-warnings --exclude-libs libunwind.a --no-undefined --gc-sections CMakeFiles/cmTC_2a399.dir/CMakeCXXCompilerABI.cpp.o -Bstatic -lc++ -Bdynamic -lm -lgcc -ldl -lc -lgcc -ldl /Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o]
-    arg [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/bin/ld] ==> ignore
-    arg [--sysroot=/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot] ==> ignore
+  ignore line: [InstalledDir: /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/bin]
+  link line: [ "/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/bin/ld" --sysroot=/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -pie -z noexecstack -EL --warn-shared-textrel -z now -z relro -z max-page-size=4096 -X --hash-style=both --enable-new-dtags --eh-frame-hdr -m armelf_linux_eabi -dynamic-linker /system/bin/linker -o cmTC_1a00f /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/arm -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21 -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib -L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib --build-id=sha1 --no-rosegment --fatal-warnings --no-undefined --gc-sections CMakeFiles/cmTC_1a00f.dir/CMakeCXXCompilerABI.cpp.o -Bstatic -lc++ -Bdynamic -lm /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a -l:libunwind.a -ldl -lc /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a -l:libunwind.a -ldl /Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o]
+    arg [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/bin/ld] ==> ignore
+    arg [--sysroot=/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot] ==> ignore
     arg [-pie] ==> ignore
     arg [-znoexecstack] ==> ignore
     arg [-EL] ==> ignore
     arg [--warn-shared-textrel] ==> ignore
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
+    arg [-zmax-page-size=4096] ==> ignore
     arg [-X] ==> ignore
     arg [--hash-style=both] ==> ignore
     arg [--enable-new-dtags] ==> ignore
@@ -224,51 +177,40 @@ Parsed CXX implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/system/bin/linker] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_2a399] ==> ignore
-    arg [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o] ==> ignore
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.8/lib/linux/arm] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.8/lib/linux/arm]
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/armv7-a/thumb] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/armv7-a/thumb]
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/../lib/armv7-a/thumb] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/../lib/armv7-a/thumb]
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21]
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi]
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib]
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/../../lib] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/../../lib]
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/armv7-a/thumb] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/armv7-a/thumb]
-    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
-    arg [--exclude-libs] ==> ignore
-    arg [libgcc.a] ==> ignore
-    arg [--exclude-libs] ==> ignore
-    arg [libgcc_real.a] ==> ignore
-    arg [--exclude-libs] ==> ignore
-    arg [libatomic.a] ==> ignore
-    arg [--build-id] ==> ignore
+    arg [cmTC_1a00f] ==> ignore
+    arg [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o] ==> ignore
+    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/arm] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/arm]
+    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21]
+    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi]
+    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib]
+    arg [-L/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib] ==> dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
+    arg [--build-id=sha1] ==> ignore
+    arg [--no-rosegment] ==> ignore
     arg [--fatal-warnings] ==> ignore
-    arg [--exclude-libs] ==> ignore
-    arg [libunwind.a] ==> ignore
     arg [--no-undefined] ==> ignore
     arg [--gc-sections] ==> ignore
-    arg [CMakeFiles/cmTC_2a399.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_1a00f.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-Bstatic] ==> ignore
     arg [-lc++] ==> lib [c++]
     arg [-Bdynamic] ==> ignore
     arg [-lm] ==> lib [m]
-    arg [-lgcc] ==> lib [gcc]
+    arg [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a] ==> lib [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a]
+    arg [-l:libunwind.a] ==> lib [-l:libunwind.a]
     arg [-ldl] ==> lib [dl]
     arg [-lc] ==> lib [c]
-    arg [-lgcc] ==> lib [gcc]
+    arg [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a] ==> lib [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a]
+    arg [-l:libunwind.a] ==> lib [-l:libunwind.a]
     arg [-ldl] ==> lib [dl]
-    arg [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o] ==> ignore
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.8/lib/linux/arm] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.8/lib/linux/arm]
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/armv7-a/thumb] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/armv7-a/thumb]
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/../lib/armv7-a/thumb] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/arm-linux-androideabi/lib/armv7-a/thumb]
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21]
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi]
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/../../lib] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/../../../../arm-linux-androideabi/lib/armv7-a/thumb] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/arm-linux-androideabi/lib/armv7-a/thumb]
-  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib] ==> [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
-  implicit libs: [c++;m;gcc;dl;c;gcc;dl]
-  implicit dirs: [/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.8/lib/linux/arm;/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9.x/armv7-a/thumb;/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/arm-linux-androideabi/lib/armv7-a/thumb;/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21;/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi;/Users/liuxingming/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
+    arg [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o] ==> ignore
+  remove lib [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a]
+  remove lib [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a]
+  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/arm] ==> [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/arm]
+  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21] ==> [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21]
+  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi] ==> [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi]
+  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/../lib] ==> [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
+  collapse library dir [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib] ==> [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
+  implicit libs: [c++;m;-l:libunwind.a;dl;c;-l:libunwind.a;dl]
+  implicit dirs: [/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/14.0.1/lib/linux/arm;/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/21;/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi;/Users/liuxingming/Library/Android/sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib]
   implicit fwks: []
 
 
@@ -277,9 +219,9 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++1z] compiler features compiled with the following output:
 Change Dir: /Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/CMakeTmp
 
-Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_1a1cb"
-[1/2] Building CXX object CMakeFiles/cmTC_1a1cb.dir/feature_tests.cxx.o
-[2/2] Linking CXX executable cmTC_1a1cb
+Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_c5e88"
+[1/2] Building CXX object CMakeFiles/cmTC_c5e88.dir/feature_tests.cxx.o
+[2/2] Linking CXX executable cmTC_c5e88
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -344,9 +286,9 @@ Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/b
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: /Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/CMakeTmp
 
-Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_c35f1"
-[1/2] Building CXX object CMakeFiles/cmTC_c35f1.dir/feature_tests.cxx.o
-[2/2] Linking CXX executable cmTC_c35f1
+Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_ab64a"
+[1/2] Building CXX object CMakeFiles/cmTC_ab64a.dir/feature_tests.cxx.o
+[2/2] Linking CXX executable cmTC_ab64a
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -411,9 +353,9 @@ Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/b
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/CMakeTmp
 
-Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_720d8"
-[1/2] Building CXX object CMakeFiles/cmTC_720d8.dir/feature_tests.cxx.o
-[2/2] Linking CXX executable cmTC_720d8
+Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_b9712"
+[1/2] Building CXX object CMakeFiles/cmTC_b9712.dir/feature_tests.cxx.o
+[2/2] Linking CXX executable cmTC_b9712
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -478,9 +420,9 @@ Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/b
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: /Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/CMakeTmp
 
-Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_efcf7"
-[1/2] Building CXX object CMakeFiles/cmTC_efcf7.dir/feature_tests.cxx.o
-[2/2] Linking CXX executable cmTC_efcf7
+Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_14b0c"
+[1/2] Building CXX object CMakeFiles/cmTC_14b0c.dir/feature_tests.cxx.o
+[2/2] Linking CXX executable cmTC_14b0c
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -543,17 +485,17 @@ Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/b
 Determining if the include file pthread.h exists passed with the following output:
 Change Dir: /Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/CMakeTmp
 
-Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_1e4e0"
-[1/2] Building C object CMakeFiles/cmTC_1e4e0.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_1e4e0
+Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_00245"
+[1/2] Building C object CMakeFiles/cmTC_00245.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_00245
 
 
 Determining if the pthread_create exist passed with the following output:
 Change Dir: /Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/CMakeTmp
 
-Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_df7ee"
-[1/2] Building C object CMakeFiles/cmTC_df7ee.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_df7ee
+Run Build Command:"/Users/liuxingming/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_a8a1a"
+[1/2] Building C object CMakeFiles/cmTC_a8a1a.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_a8a1a
 
 File /Users/liuxingming/Documents/flutter/native_opencv/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */

@@ -7,6 +7,7 @@ import 'package:native_opencv/utils/adjustment_area.dart';
 import 'dart:ui' as ui;
 
 import '../native_opencv.dart';
+import 'city_picker.dart';
 
 class ImagePainter extends CustomPainter {
   ui.Image? image;
@@ -14,7 +15,7 @@ class ImagePainter extends CustomPainter {
   ImagePainter(this.image);
 
   @override
-  void paint(Canvas canvas, Size size) {
+  void paint(Canvas canvas, ui.Size size) {
     Paint paint = Paint();
     if (image != null) {
       //draw the backgroud image
@@ -54,7 +55,7 @@ class ClipAreaPainter extends CustomPainter {
   ClipAreaPainter(this.offsets, this.selected);
 
   @override
-  void paint(Canvas canvas, Size size) {
+  void paint(Canvas canvas, ui.Size size) {
     Paint paint = Paint();
     // double dwidth = 0;
     // double dheight = 0;
@@ -94,11 +95,12 @@ class ClipAreaPainter extends CustomPainter {
   }
 
   bool equal(ClipAreaPainter oldDelegate) {
-    bool result = true;
-    for (int i = 0; i < offsets.length; i++) {
-      if (offsets[i] != oldDelegate.offsets[i]) return true;
-    }
-    return oldDelegate.selected != selected;
+    return true;
+    // bool result = true;
+    //   for (int i = 0; i < offsets.length; i++) {
+    //     if (offsets[i] != oldDelegate.offsets[i]) return true;
+    //   }
+    //   return oldDelegate.selected != selected;
   }
 
   @override
@@ -108,33 +110,46 @@ class ClipAreaPainter extends CustomPainter {
   }
 }
 
+typedef FinishCallback = void Function(
+    double ratio, int entityUnit, Uint8List imgdata);
+
 class ImageAreaWidget extends StatefulWidget {
   final Uint8List? uint8list;
   final Color dragColor;
+  final FinishCallback finishCallback;
   const ImageAreaWidget(
-      {Key? key, this.uint8list, this.dragColor = Colors.tealAccent})
+      {Key? key,
+      this.uint8list,
+      required this.finishCallback,
+      this.dragColor = Colors.tealAccent})
       : super(key: key);
 
   @override
   State<ImageAreaWidget> createState() => _ImageAreaWidgetState();
 }
 
-class _ImageAreaWidgetState extends State<ImageAreaWidget> {
+class _ImageAreaWidgetState extends State<ImageAreaWidget>
+    implements CityAlertViewDelegate {
   List<Offset> offsets = [];
   List<Offset> _bkOffset = [];
 
   final FourPoint fp = FourPoint.fp;
   double imgWidth = 400;
   double imgHeight = 400;
+  double entityWidth = 0;
+  double entityHeight = 0;
+  int entityUnit = 0;
   double scale = 1;
   ui.Image? _image;
+  Uint8List? _doneImg;
   Pointer<Uint8>? bytes;
   Pointer<Int32>? imgLengthBytes;
   int dragIndex = -1;
+  int selectedIndex = -1;
   Offset curOffset = const Offset(0, 0);
   bool isEditing = false;
-  String btnTitle1 = "Cancle";
-  String btnTitle2 = "Continue";
+  static const List<IconData> iconDatas1 = [Icons.cancel, Icons.navigate_next];
+  static const List<IconData> iconDatas2 = [Icons.navigate_before, Icons.done];
 
   /// 通过 Uint8List 获取图片
   Future<ui.Image> loadImageByUint8List(Uint8List list) async {
@@ -158,7 +173,8 @@ class _ImageAreaWidgetState extends State<ImageAreaWidget> {
   Uint8List? imageSquare() {
     Pointer<FPoint> fpts = malloc.allocate(sizeOf<FPoint>() * 4);
     listToFPoint(offsets, fpts, scale, 4);
-    final newBytes = squareImage(imgLengthBytes!, fpts, 21.0 / 29.7);
+    final newBytes =
+        squareImage(imgLengthBytes!, fpts, entityWidth / entityHeight);
     if (newBytes == nullptr) {
       // print('高斯模糊失败');
       return null;
@@ -201,14 +217,85 @@ class _ImageAreaWidgetState extends State<ImageAreaWidget> {
   }
 
   void dragUpdate(double dx, double dy) {
-    if (dragIndex != -1) {
+    if (selectedIndex != -1) {
       setState(() {
-        offsets[dragIndex] += Offset(dx, dy);
-        if (dragIndex == 0) {
+        offsets[selectedIndex] += Offset(dx, dy);
+        if (selectedIndex == 0) {
           offsets[4] += Offset(dx, dy);
         }
       });
     }
+  }
+
+  List<Widget> buttons() {
+    List<Widget> _btns = [];
+    _btns.add(IconButton(
+      icon: Icon(
+        offsets.isNotEmpty ? iconDatas1[0] : iconDatas2[0],
+        color: Colors.blueAccent,
+        // size: 40,
+      ), //Text(btnTitle1),
+      onPressed: () async {
+        if (offsets.isNotEmpty) {
+        } else {
+          _image = await loadImageByUint8List(widget.uint8list!);
+          offsets = List.from(_bkOffset);
+          _bkOffset.clear();
+        }
+        setState(() {});
+      },
+    ));
+    if (offsets.isNotEmpty) {
+      const _iconDatas = [
+        Icons.arrow_drop_up,
+        Icons.arrow_drop_down,
+        Icons.arrow_left,
+        Icons.arrow_right
+      ];
+      const _offsets = [
+        [0.0, -1.0],
+        [0.0, 1.0],
+        [-1.0, 0.0],
+        [1.0, 0.0]
+      ];
+      for (int i = 0; i < _iconDatas.length; i++) {
+        _btns.add(IconButton(
+            onPressed: selectedIndex != -1
+                ? () {
+                    dragUpdate(_offsets[i][0], _offsets[i][1]);
+                  }
+                : null,
+            icon: Icon(
+              _iconDatas[i],
+              color: selectedIndex != -1 ? Colors.blueAccent : Colors.blueGrey,
+              // size: 40,
+            )));
+      }
+    }
+    _btns.add(IconButton(
+        onPressed: () {
+          if (offsets.isNotEmpty) {
+            //调用弹框
+            showModalBottomSheet(
+                context: context,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadiusDirectional.circular(10)),
+                builder: (BuildContext context) {
+                  return CityAlertView(
+                    delegate: this,
+                  );
+                });
+          } else {
+            widget.finishCallback(
+                entityWidth / _image!.width, entityUnit, _doneImg!);
+          }
+        },
+        icon: Icon(
+          offsets.isNotEmpty ? iconDatas1[1] : iconDatas2[1],
+          color: Colors.blueAccent,
+          // size: 40,
+        ))); // Text(btnTitle2)));
+    return _btns;
   }
 
   @override
@@ -235,6 +322,7 @@ class _ImageAreaWidgetState extends State<ImageAreaWidget> {
           child: isEditing
               ? GestureDetector(
                   onPanDown: (details) {
+                    selectedIndex = -1;
                     for (int i = 0; i < 4; i++) {
                       Path path = Path();
                       path.addOval(
@@ -258,69 +346,37 @@ class _ImageAreaWidgetState extends State<ImageAreaWidget> {
                     }
                   },
                   onPanEnd: (details) {
-                    // dragIndex = -1;
+                    selectedIndex = dragIndex;
+                    dragIndex = -1;
                   },
                 )
               : null,
-          foregroundPainter:
-              isEditing ? ClipAreaPainter(offsets, dragIndex) : null,
+          foregroundPainter: isEditing
+              ? ClipAreaPainter(offsets, dragIndex & selectedIndex)
+              : null,
           // size: Size(widget.width, imgHeight * scale),
         )),
         Padding(
           padding: const EdgeInsets.only(top: 28.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              ElevatedButton(
-                child: Text(btnTitle1),
-                onPressed: () async {
-                  if (offsets.isNotEmpty) {
-                  } else {
-                    _image = await loadImageByUint8List(widget.uint8list!);
-                    offsets = List.from(_bkOffset);
-                    _bkOffset.clear();
-                    btnTitle1 = "Cancle";
-                    btnTitle2 = "Continue";
-                  }
-                  setState(() {});
-                },
-              ),
-              IconButton(
-                  onPressed: () {
-                    dragUpdate(0, -1);
-                  },
-                  icon: const Icon(Icons.arrow_drop_up)),
-              IconButton(
-                  onPressed: () {
-                    dragUpdate(0, 1);
-                  },
-                  icon: const Icon(Icons.arrow_drop_down)),
-              IconButton(
-                  onPressed: () {
-                    dragUpdate(-1, 0);
-                  },
-                  icon: const Icon(Icons.arrow_left)),
-              IconButton(
-                  onPressed: () {
-                    dragUpdate(1, 0);
-                  },
-                  icon: const Icon(Icons.arrow_right)),
-              ElevatedButton(
-                  onPressed: () async {
-                    if (offsets.isNotEmpty) {
-                      _image = await loadImageByUint8List(imageSquare()!);
-                      _bkOffset = List.from(offsets);
-                      offsets.clear();
-                      btnTitle1 = "Previous";
-                      btnTitle2 = "Done";
-                    }
-                    setState(() {});
-                  },
-                  child: Text(btnTitle2))
-            ],
-          ),
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: buttons()),
         )
       ],
     );
+  }
+
+  @override
+  void confirmClick(List<num?> models) async {
+    entityWidth = models[0]?.toDouble() ?? 0;
+    entityHeight = models[1]?.toDouble() ?? 0;
+    entityUnit = models[2]?.toInt() ?? 0;
+    // debugPrint("width: ${models[0]}");
+    _doneImg = imageSquare();
+    _image = await loadImageByUint8List(_doneImg!);
+    _bkOffset = List.from(offsets);
+    offsets.clear();
+    setState(() {});
+    // debugPrint("选择index为$index,选择的内容为$str");
   }
 }

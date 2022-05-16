@@ -96,6 +96,14 @@ class _MyAppState extends State<MyApp> {
                 // ),
                 ImageAreaWidget(
                   uint8list: uint8list,
+                  finishCallback: (ratio, unit, uint8listImg) {
+                    debugPrint("ratio: $ratio, unit: ${[
+                      "mm",
+                      "cm",
+                      "m",
+                      "km"
+                    ][unit]}");
+                  },
                 ),
                 // uint8list1 == null
                 //     ? const Text("waiting...")
