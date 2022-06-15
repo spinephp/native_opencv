@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.4.1)
 
+#支持-std=gnu++11
+#set(CMAKE_VERBOSE_MAKEFILE on)
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
+
 # 项目名称
 if (CMAKE_SYSTEM_NAME MATCHES "Windows") 
     set(PROJECT_NAME "libNativeAdd")
@@ -80,6 +84,24 @@ set_target_properties(tegra_hal PROPERTIES IMPORTED_LOCATION ${OPENCV_3RDPARTY_S
 add_library(ittnotify STATIC IMPORTED)
 set_target_properties(ittnotify PROPERTIES IMPORTED_LOCATION ${OPENCV_3RDPARTY_STATIC_LIB_DIR}/libittnotify.a)
 
+add_library(libtiff STATIC IMPORTED)
+set_target_properties(libtiff PROPERTIES IMPORTED_LOCATION ${OPENCV_3RDPARTY_STATIC_LIB_DIR}/liblibtiff.a)
+
+add_library(libpng STATIC IMPORTED)
+set_target_properties(libpng PROPERTIES IMPORTED_LOCATION ${OPENCV_3RDPARTY_STATIC_LIB_DIR}/liblibpng.a)
+
+add_library(libjpeg-turbo STATIC IMPORTED)
+set_target_properties(libjpeg-turbo PROPERTIES IMPORTED_LOCATION ${OPENCV_3RDPARTY_STATIC_LIB_DIR}/liblibjpeg-turbo.a)
+
+add_library(libopenjp2 STATIC IMPORTED)
+set_target_properties(libopenjp2 PROPERTIES IMPORTED_LOCATION ${OPENCV_3RDPARTY_STATIC_LIB_DIR}/liblibopenjp2.a)
+
+add_library(IlmImf STATIC IMPORTED)
+set_target_properties(IlmImf PROPERTIES IMPORTED_LOCATION ${OPENCV_3RDPARTY_STATIC_LIB_DIR}/libIlmImf.a)
+
+add_library(libwebp STATIC IMPORTED)
+set_target_properties(libwebp PROPERTIES IMPORTED_LOCATION ${OPENCV_3RDPARTY_STATIC_LIB_DIR}/liblibwebp.a)
+
 # 源文件
 add_library(
     # 生成的so库名称，此处生成的so文件名称是 libNativeAdd.so
@@ -99,13 +121,22 @@ add_library(
 
 target_link_libraries(${PROJECT_NAME}
         ${log-lib}
-        core highgui
+        highgui
         # note: You can import whatever other modules you like (e.g. dnn)
+        imgcodecs
+        imgproc
+        libpng
+        libtiff
+        libjpeg-turbo
+        core
         tbb # note: need to be placed *after* "core"
-        cpufeatures
-        ittnotify
         tegra_hal # NOTE if still have error, check abiFilters, since tegra does *not* exist in x86.
-
+        ittnotify
+        libopenjp2
+        IlmImf
+        libwebp
+        
+        cpufeatures
         Threads::Threads
         -lz
         )
