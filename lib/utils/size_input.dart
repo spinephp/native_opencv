@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../components/form_util.dart';
+import 'package:native_opencv/components/form_util.dart';
 
 Future<Map<String, String>?> inputSizeDialog(BuildContext context) {
   const List<String> _units = ["mm", "cm", "m", "km"];
@@ -131,9 +131,9 @@ Future<Map<String, String>?> inputSizeDialog(BuildContext context) {
                               onChanged: (type) {
                                 // print("=======$type");
                                 curUint = type ?? _units[0];
-                                // setState(() {
-                                //   typeChange(type ?? "Accelerometer");
-                                // });
+                                setState(() {
+                                  // typeChange(type ?? "Accelerometer");
+                                });
                               },
                             ),
                           ],

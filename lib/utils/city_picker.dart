@@ -98,21 +98,26 @@ class _CityAlertViewState extends State<CityAlertView> {
 
   //确定生成回调
   void _confirmClick(BuildContext context) async {
-    num _width, _height, _unit;
+    List<num?> models = [null, null, null];
+    // num _width, _height, _unit;
     if (widget.delegate != null) {
       if (_provinceIndex == _provinceList.length - 1) {
+        // custom
         var value = await inputSizeDialog(context);
         if (value == null) return;
-        _width = double.parse(value?['width'] ?? '0');
-        _height = double.parse(value?['height'] ?? '0');
-        _unit = int.parse(value?['unit'] ?? '0');
+        models[0] = double.parse(value['width'] ?? '0');
+        models[1] = double.parse(value['height'] ?? '0');
+        models[2] = int.parse(value['unit'] ?? '0');
+      } else if (_provinceIndex == _provinceList.length - 2) {
+        // original sample
+
       } else {
         final _threeList = _areaList[_areaIndex] as List;
-        _width = (_areaList[_areaIndex] as List)[1];
-        _height = _threeList[2];
-        _unit = _threeList.length == 4 ? _threeList[3] : 0;
+        models[0] = (_areaList[_areaIndex] as List)[1];
+        models[1] = _threeList[2];
+        models[2] = _threeList.length == 4 ? _threeList[3] : 0;
       }
-      widget.delegate?.confirmClick([_width, _height, _unit]);
+      widget.delegate?.confirmClick(models);
     }
     Navigator.of(context).pop();
   }

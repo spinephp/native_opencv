@@ -102,6 +102,17 @@ class Reclassify {
       ]
     ],
     [
+      "Original sample",
+      [
+        [
+          null,
+          [
+            [null]
+          ]
+        ]
+      ]
+    ],
+    [
       "Custom",
       [
         [

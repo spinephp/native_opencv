@@ -13,20 +13,24 @@ class FourPoint extends ChangeNotifier {
 
   List<FPoint>? get point4 => _pts;
 
-  update(List<FPoint> p4s) {
-    _pts = List.from(p4s);
+  update(List<FPoint>? p4s) {
+    _pts = p4s == null ? null : List.from(p4s);
     notifyListeners();
   }
 }
 
 /// FourPoint global4Point = FourPoint();
 void correctOuterEdge(Pointer<FPoint> pts, int length) {
-  List<FPoint> ps = [];
-  for (int i = 0; i < length; i++) {
-    ps.add(pts[i]);
-    debugPrint("p$i = [${pts[i].x}, ${pts[i].y}]");
+  if (pts == nullptr) {
+    FourPoint.fp.update(null);
+  } else {
+    List<FPoint> ps = [];
+    for (int i = 0; i < length; i++) {
+      ps.add(pts[i]);
+      debugPrint("p$i = [${pts[i].x}, ${pts[i].y}]");
+    }
+    FourPoint.fp.update(ps);
   }
-  FourPoint.fp.update(ps);
 }
 
 List<FPoint> fpointToList(Pointer<FPoint> pts, List<FPoint> ps, int length) {

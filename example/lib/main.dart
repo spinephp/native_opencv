@@ -6,8 +6,6 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:native_opencv/native_opencv.dart';
 import 'package:native_opencv/utils/picker_area.dart';
-import 'package:native_opencv/utils/adjustment_area.dart';
-import 'dart:ui' as ui;
 
 void main() {
   runApp(const MyApp());
