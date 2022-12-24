@@ -12,6 +12,7 @@ import 'package:native_opencv/utils/city_picker.dart';
 import 'package:native_opencv/utils/adjustment_area.dart';
 import 'package:seene_measure/utils/widgets.dart';
 import 'package:seene_measure/pages/update_background_page.dart';
+import 'package:seene_measure/pages/object_edit_page.dart';
 
 class ClipAreaPainter extends CustomPainter {
   final List<Offset> offsets;
@@ -119,11 +120,11 @@ typedef FinishCallback = void Function(
 class ImageAreaWidget extends StatefulWidget {
   final Uint8List? uint8list;
   final Color dragColor;
-  final FinishCallback finishCallback;
+  // final FinishCallback finishCallback;
   const ImageAreaWidget(
       {Key? key,
       this.uint8list,
-      required this.finishCallback,
+      // required this.finishCallback,
       this.dragColor = Colors.tealAccent})
       : super(key: key);
 
@@ -268,10 +269,10 @@ class _ImageAreaWidgetState extends State<ImageAreaWidget>
           // Navigator.of(context).pop();
         } else {
           // if (saveImgBytes != null) imgLengthBytes?.value = saveImgBytes!;
-          _image = await loadImageByUint8List(widget.uint8list!);
-          offsets = List.from(_bkOffset);
-          _bkOffset.clear();
-          isEditing = true;
+          // _image = await loadImageByUint8List(widget.uint8list!);
+          // offsets = List.from(_bkOffset);
+          // _bkOffset.clear();
+          // isEditing = true;
         }
         setState(() {});
       },
@@ -312,6 +313,7 @@ class _ImageAreaWidgetState extends State<ImageAreaWidget>
                 MaterialPageRoute(
                     builder: (context) => UpdateBackgroundPage(
                           imgbytes: _doneImg!,
+                          imgUnit: 0,
                         ))).then((value) {
               if (value != null) {
                 _doneImg = value;
@@ -335,21 +337,21 @@ class _ImageAreaWidgetState extends State<ImageAreaWidget>
     }
     _btns.add(IconButton(
         onPressed: () {
-          if (offsets.isNotEmpty) {
-            //调用弹框
-            showModalBottomSheet(
-                context: context,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadiusDirectional.circular(10)),
-                builder: (BuildContext context) {
-                  return CityAlertView(
-                    delegate: this,
-                  );
-                });
-          } else {
-            widget.finishCallback(
-                entityWidth / _image!.width, entityUnit, _doneImg!);
-          }
+          // if (offsets.isNotEmpty) {
+          //调用弹框
+          showModalBottomSheet(
+              context: context,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadiusDirectional.circular(10)),
+              builder: (BuildContext context) {
+                return CityAlertView(
+                  delegate: this,
+                );
+              });
+          // } else {
+          //   widget.finishCallback(
+          //       entityWidth / _image!.width, entityUnit, _doneImg!);
+          // }
         },
         icon: Icon(
           offsets.isNotEmpty ? iconDatas1[1] : iconDatas2[1],
@@ -439,6 +441,17 @@ class _ImageAreaWidgetState extends State<ImageAreaWidget>
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
+            appBar: AppBar(
+              title: Text('Select Object Area'),
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      // uint8list = squareImage(uint8list!);
+                      setState(() {});
+                    },
+                    icon: const Icon(Icons.access_alarms))
+              ],
+            ),
             bottomNavigationBar: BottomAppBar(
                 // color: Colors.white,
                 child: Row(
@@ -472,26 +485,51 @@ class _ImageAreaWidgetState extends State<ImageAreaWidget>
     entityWidth = models[0]?.toDouble() ?? _image!.width.toDouble();
     entityHeight = models[1]?.toDouble() ?? _image!.height.toDouble();
     entityUnit = models[2]?.toInt() ?? 4;
-
-    // if (models[0] != null) {
     _doneImg = models[0] != null ? imageSquare() : widget.uint8list;
-    _image = await loadImageByUint8List(_doneImg!);
 
-    // 如实体长短边与图象长短边不对应，则调交换实体两个边使其相对应
-    if (_image != null) {
-      print(
-          "image width: ${_image!.width} image height: ${_image!.height}\n entity width: $entityWidth, entity height: $entityHeight");
-      if ((_image!.width > _image!.height && entityWidth < entityHeight) ||
-          (_image!.width < _image!.height && entityWidth > entityHeight)) {
-        final _tem = entityHeight;
-        entityHeight = entityWidth;
-        entityWidth = _tem;
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => ObjectEditPage(
+                  imgbytes: _doneImg,
+                  imgUnit: entityUnit,
+                ))).then((value) {
+      if (value != null) {
+        loadImageByUint8List(value).then((img) {
+          Navigator.of(context)
+              .pop([entityWidth / img.width, entityUnit, value]);
+          // widget.finishCallback(entityWidth / img.width, entityUnit, value);
+        });
+      } else {
+        isEditing = true;
       }
-    }
-    _bkOffset = List.from(offsets);
-    offsets.clear();
-    // }
-    setState(() {});
-    // debugPrint("选择index为$index,选择的内容为$str");
+    });
   }
+  // void confirmClick(List<num?> models) async {
+  //   // 设置实体尺寸及单位(如纸张)
+  //   entityWidth = models[0]?.toDouble() ?? _image!.width.toDouble();
+  //   entityHeight = models[1]?.toDouble() ?? _image!.height.toDouble();
+  //   entityUnit = models[2]?.toInt() ?? 4;
+
+  //   // if (models[0] != null) {
+  //   _doneImg = models[0] != null ? imageSquare() : widget.uint8list;
+  //   _image = await loadImageByUint8List(_doneImg!);
+
+  //   // 如实体长短边与图象长短边不对应，则调交换实体两个边使其相对应
+  //   if (_image != null) {
+  //     print(
+  //         "image width: ${_image!.width} image height: ${_image!.height}\n entity width: $entityWidth, entity height: $entityHeight");
+  //     if ((_image!.width > _image!.height && entityWidth < entityHeight) ||
+  //         (_image!.width < _image!.height && entityWidth > entityHeight)) {
+  //       final _tem = entityHeight;
+  //       entityHeight = entityWidth;
+  //       entityWidth = _tem;
+  //     }
+  //   }
+  //   _bkOffset = List.from(offsets);
+  //   offsets.clear();
+  //   // }
+  //   setState(() {});
+  //   // debugPrint("选择index为$index,选择的内容为$str");
+  // }
 }

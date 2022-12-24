@@ -13,7 +13,6 @@ using namespace std;
 #define DART_API extern "C" __attribute__((visibility("default"))) __attribute__((used))
 #endif
 
-
 //定义结构体Point，表示平面上的一点
 typedef struct {
     double_t x;
@@ -26,12 +25,12 @@ typedef struct {
     int32_t length;
 } FPointArray;
 
-DART_API FPoint *arrayFPoint(int32_t length){
-    auto  *points = (FPoint *)malloc(length * sizeof(FPoint));
+DART_API FPoint *create_points(int32_t length){
+    auto *points = (FPoint *)malloc(length * sizeof(FPoint));
     return points;
 }
 
-//定义结构体 RectI，表示平面上的矩形
+//定义结构体Point，表示平面上的一点
 typedef struct {
     int32_t x;
     int32_t y;
@@ -39,21 +38,25 @@ typedef struct {
     int32_t height;
 } RectI;
 
+DART_API RectI *create_rects(int32_t length){
+    auto *rects = (RectI *)malloc(length * sizeof(RectI));
+    return rects;
+}
+
+inline cv::Scalar colorToScalar(int32_t color){
+    return cv::Scalar(color&0xff, color>>8&0xff, color>>16&0xff);
+}
+
 DART_API int32_t native_add(int32_t x, int32_t y) {
     Mat m = Mat::zeros(x, y, CV_8UC3);
     return m.rows + m.cols;
 }
 
-Mat *src = nullptr;
-
-void dispose(){
-    free(src);
-    src = nullptr;
-}
+Mat srcImg ;
 
 Mat *opencv_decodeImage(
         uint8_t *img,
-        unsigned *imgLengthBytes) {
+        unsigned *imgLengthBytes,Mat &src) {
  
     std::vector<unsigned char> m;
  
@@ -64,13 +67,9 @@ Mat *opencv_decodeImage(
     unsigned len = *imgLengthBytes;
     for (unsigned i = 0; i<len; i++)
          m.push_back(*(img++));
-    
-    if(src!=nullptr){
-        dispose();
-    }
-
-    *src = imdecode(m, cv::IMREAD_COLOR);
-    if (src->data == nullptr)
+ 
+    src = imdecode(m, cv::IMREAD_COLOR);
+    if (src.data == nullptr)
         return nullptr;
  
     // if (DEBUG_NATIVE)
@@ -79,8 +78,8 @@ Mat *opencv_decodeImage(
     //                         *imgLengthBytes, src->step[0] * src->rows,
     //                         src->cols, src->rows);
  
-    *imgLengthBytes = (unsigned)(src->step[0] * src->rows);
-    return src;
+    *imgLengthBytes = src.step[0] * src.rows;
+    return &src;
 }
 
 #pragma mark =========== 寻找最大边框 ===========
@@ -138,22 +137,22 @@ double getSpacePointToPoint(cv::Point p1, cv::Point p2)
  @param b 线段2
  @return 交点
  */
-cv::Point2f computeIntersect(cv::Vec4i a, cv::Vec4i b)  
-{  
+cv::Point2f computeIntersect(cv::Vec4i a, cv::Vec4i b)
+{
     float x1 = a[0], y1 = a[1], x2 = a[2], y2 = a[3], x3 = b[0], y3 = b[1], x4 = b[2], y4 = b[3];
 
-    if (float d = ((float)(x1 - x2) * (y3 - y4)) - ((y1 - y2) * (x3 - x4)))  
-    {  
+    if (float d = ((float)(x1 - x2) * (y3 - y4)) - ((y1 - y2) * (x3 - x4)))
+    {
         cv::Point2f pt;
         float xy1 = x1 * y2 - y1 * x2;
         float xy2 = x3 * y4 - y3 * x4;
         pt.x = (xy1 * (x3 - x4) - (x1 - x2) * xy2) / d;
         pt.y = (xy1 * (y3 - y4) - (y1 - y2) * xy2) / d;
-        return pt;  
-    }  
-    else  
-        return cv::Point2f(-1, -1);  
-}  
+        return pt;
+    }
+    else
+        return cv::Point2f(-1, -1);
+}
 
 /**
  对多个点按顺时针排序
@@ -166,10 +165,10 @@ void sortCorners(std::vector<cv::Point2f>& corners)
     //先延 X轴排列
     cv::Point pl = corners[0];
     int index = 0;
-    for (int i = 1; i < corners.size(); i++) 
+    for (int i = 1; i < corners.size(); i++)
     {
         cv::Point point = corners[i];
-        if (pl.x > point.x) 
+        if (pl.x > point.x)
         {
             pl = point;
             index = i;
@@ -179,13 +178,13 @@ void sortCorners(std::vector<cv::Point2f>& corners)
     corners[0] = pl;
 
     cv::Point lp = corners[0];
-    for (int i = 1; i < corners.size(); i++) 
+    for (int i = 1; i < corners.size(); i++)
     {
-        for (int j = i+1; j<corners.size(); j++) 
+        for (int j = i+1; j<corners.size(); j++)
         {
             cv::Point point1 = corners[i];
             cv::Point point2 = corners[j];
-            if ((point1.y-lp.y*1.0)/(point1.x-lp.x)>(point2.y-lp.y*1.0)/(point2.x-lp.x)) 
+            if ((point1.y-lp.y*1.0)/(point1.x-lp.x)>(point2.y-lp.y*1.0)/(point2.x-lp.x))
             {
                 cv::Point temp = point1;
                 corners[i] = corners[j];
@@ -194,7 +193,6 @@ void sortCorners(std::vector<cv::Point2f>& corners)
         }
     }
 }
-
 
 void make_adjust_area(vector<cv::Point2f> corns,void (*adjust_area)(FPoint*, int32_t)){
     FPoint *dPts = (FPoint*)malloc(sizeof(FPoint)*corns.size());
@@ -273,6 +271,7 @@ void draw_quadrangle(Mat &mat,void (*adjust_area)(FPoint*, int32_t))
     //找出外接矩形最大的四边形
     int idex = findLargestSquare(squares, largest_square);
 
+    // 如果没找到最大的四边形，则给定一个矩形以便进行人工选择
     if (largest_square.size() == 0 || idex == -1){
         cornors1.push_back(cv::Point(src_gray.cols/6,src_gray.rows/6));
         cornors1.push_back(cv::Point(src_gray.cols*5/6,src_gray.rows/6));
@@ -281,6 +280,7 @@ void draw_quadrangle(Mat &mat,void (*adjust_area)(FPoint*, int32_t))
         make_adjust_area(cornors1,adjust_area);
         return;
     } 
+
     //找到这个最大的四边形对应的凸边框，再次进行多边形拟合，此次精度较高，拟合的结果可能是大于4条边的多边形
     //接下来的操作，主要是为了解决，证件有圆角时检测到的四个顶点的连线会有切边的问题
     hull = hulls[idex];
@@ -317,22 +317,8 @@ void draw_quadrangle(Mat &mat,void (*adjust_area)(FPoint*, int32_t))
          cv::Point cornor = computeIntersect(lines[i],lines[(i+1)%lines.size()]);
          cornors1.push_back(cornor);
      }
-
+     
     make_adjust_area(cornors1,adjust_area);
-    // FPoint *dPts = (FPoint*)malloc(sizeof(FPoint)*cornors1.size());
-    // // FPoint *sPts = dPts;
-    //  //绘制出四条边
-    //  for (int i = 0; i < cornors1.size(); i++)
-    //  {
-    //      dPts[i].x = cornors1[i].x;
-    //      dPts[i].y = cornors1[i].y;
-    //     //  dPts++;
-    //     //  line(mat, cornors1[i], cornors1[(i+1)%cornors1.size()], Scalar(0,0,255), 5);
-    //  }
-
-    //  adjust_area(dPts,(int32_t)cornors1.size() );
-    //  free(dPts);
-    //  dPts=nullptr;
 }
 
 /// 把四边形变换为矩形
@@ -350,9 +336,6 @@ void square_quadrangle(Mat &mat,FPoint *pts, double aspectRatio=21.0/29.7){
     cv::Point2f p1 = cornors1[1];
     cv::Point2f p2 = cornors1[2];
     cv::Point2f p3 = cornors1[3];
-    // float space0 = getSpacePointToPoint(p0, p1);
-    // float space2 = getSpacePointToPoint(p2, p3);
-    // float height = space0 > space2 ? space0 : space2;
     float space0 = getSpacePointToPoint(p0, p1);
     float space1 = getSpacePointToPoint(p1, p2);
     float space2 = getSpacePointToPoint(p2, p3);
@@ -387,7 +370,7 @@ void square_quadrangle(Mat &mat,FPoint *pts, double aspectRatio=21.0/29.7){
 
     //提取图像
     // Mat transmtx = getPerspectiveTransform(cornors1 , quad_pts);
-    Mat transmtx = getPerspectiveTransform(cornerMat , quad_pts);
+    Mat transmtx = getPerspectiveTransform(cornerMat, quad_pts);
     warpPerspective(mat, mat, transmtx, quad.size());
 }
 
@@ -397,46 +380,31 @@ void square_quadrangle(Mat &mat,FPoint *pts, double aspectRatio=21.0/29.7){
 ///     adjust_area - void (*)(FPoint*, int32_t) 类型，传回找到的四边形顶点回调
 DART_API void process_image(
         uint8_t *imgMat,
-        int32_t *imgLengthBytes, 
+        int32_t *imgLengthBytes,
         void (*adjust_area)(FPoint*, int32_t)) {
     
-    Mat *src = opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes);
-    if (src == nullptr || src->data == nullptr){
-        double datas[8] = {10,10,100,10,100,100,10,100};
-
-        FPoint *dPts = (FPoint*)malloc(sizeof(FPoint)*4);
-        for(int i=0;i<4;i++){
-            dPts[i].x = datas[i*2];
-            dPts[i].y = datas[i*2+1];
-        }
-        adjust_area(dPts,4);
-        free(dPts);
-        dPts=nullptr;
-    }else
-        draw_quadrangle(*src,adjust_area);
+    opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes,srcImg);
+    // if (src == nullptr || src->data == nullptr){
+    //     adjust_area(nullptr,4);
+    // }else
+        draw_quadrangle(srcImg,adjust_area);
 }
 
-//
-//static void getBinMask( const Mat& comMask, Mat& binMask ){
-//	binMask.create( comMask.size(), CV_8UC1 );
-//	binMask = comMask & 1;
-//}
-
-Mat *img = nullptr;
+Mat imgBack;
 Mat mask,bgdModel, fgdModel;
 Scalar bkColor;
+Rect sourceRect;
 Rect rect;
 bool init = false;
 
-
-/// 去除背景
+/// 抠图
 /// 参数 imgMat - unit8_t 指针类型，指向图象数据(通常与手机屏幕尺寸相匹配)
 ///     imgLengthByte - int32_t 指针类型，指向包含图象数据字节长度的整数
 ///     recti - RectI 指针类型，指定要操作的矩形区域
 ///     color - int32_t 类型，首次调用时指定背景颜色，否则指定掩码类型
-DART_API unsigned char *remove_background(uint8_t *imgMat,int32_t *imgLengthBytes,RectI *recti,int32_t color){
-    if(imgMat==nullptr&&img!=nullptr){
-        img = nullptr;
+DART_API unsigned char *remove_background(uint8_t *imgMat,int32_t *imgLengthBytes,RectI *recti,int32_t color,int32_t shape){
+    if(imgMat==nullptr&&!imgBack.empty()){
+        imgBack.release();
         mask.release();
         bgdModel.release();
         fgdModel.release();
@@ -447,12 +415,13 @@ DART_API unsigned char *remove_background(uint8_t *imgMat,int32_t *imgLengthByte
     rect.y = max(0,recti->y);
     rect.width = recti->width;
     rect.height = recti->height;
-    if(img==nullptr){
-        img = opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes);
-        mask.create(img->size(), CV_8UC1);
+    if(imgBack.empty()){
+        sourceRect = rect;
+        opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes,imgBack);
+        mask.create(imgBack.size(), CV_8UC1);
         mask.setTo(GC_BGD);
 	    mask(rect).setTo(Scalar(GC_PR_FGD));
-        bkColor = Scalar(color&0xff, color>>8&0xff, color>>16&0xff);
+        bkColor = colorToScalar(color);
     } else {
         Scalar scalar;
         switch (color)
@@ -474,7 +443,10 @@ DART_API unsigned char *remove_background(uint8_t *imgMat,int32_t *imgLengthByte
             scalar = Scalar(GC_BGD);
             break;
         }
-        mask(rect).setTo(Scalar(scalar));
+        if(shape==0)
+            mask(rect).setTo(Scalar(scalar));
+        else
+            circle(mask,rect.tl()+Point(rect.width/2.0,rect.height/2.0),rect.width/2.0,Scalar(scalar),-1);
     }
 	// setRectInMask();
 	// rectangle(*img, Point(x, y), Point(x + width, y + height ), GREEN, 2);
@@ -482,9 +454,10 @@ DART_API unsigned char *remove_background(uint8_t *imgMat,int32_t *imgLengthByte
 	// image = imread( filename, 1 );
 
     if(init)
-	    grabCut(*img, mask, rect, bgdModel, fgdModel, 1);
+	    // grabCut(imgBack, mask, rect, bgdModel, fgdModel, 1);
+	    grabCut(imgBack(sourceRect), mask(sourceRect), rect-sourceRect.tl(), bgdModel, fgdModel, 1);
     else{
-        grabCut(*img, mask, rect, bgdModel, fgdModel, 1, GC_INIT_WITH_RECT);
+        grabCut(imgBack, mask, rect, bgdModel, fgdModel, 1, GC_INIT_WITH_RECT);
         init = true;
     }
 //	getBinMask(mask, binMask);
@@ -492,10 +465,10 @@ DART_API unsigned char *remove_background(uint8_t *imgMat,int32_t *imgLengthByte
     Mat maskBin = mask&1;
 
     // 新建与原图相同尺寸，且颜色为 color 指定的8位3通道图像
-    Mat res(img->size(), CV_8UC3, bkColor);
+    Mat res(imgBack.size(), CV_8UC3, bkColor);
 	
     // 只考贝 img 中由 maskBin 标识的前景数据到 res
-    img->copyTo(res, maskBin);
+    imgBack.copyTo(res, maskBin);
 
     static std::vector<uchar> buf(1);
     
@@ -504,21 +477,21 @@ DART_API unsigned char *remove_background(uint8_t *imgMat,int32_t *imgLengthByte
     *imgLengthBytes = (int32_t)buf.size();
     return buf.data();
 }
-
 
 /// 用 remove_background 函数设定好的 mask(掩码信息)，调整其尺寸与给定图象尺寸一致后，去除背景
 /// 参数 imgMat - unit8_t 指针类型，指向图象数据
 ///     imgLengthByte - int32_t 指针类型，指向包含图象数据字节长度的整数
 DART_API unsigned char *remove_background_last(uint8_t *imgMat,int32_t *imgLengthBytes){
-    img = opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes);
+    Mat img;
+    opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes,img);
     Mat maskBin;
-    resize(mask&1,maskBin,img->size());
+    resize(mask&1,maskBin,img.size());
 
     // 新建与原图相同尺寸，且颜色为 color 指定的8位3通道图像
-    Mat res(img->size(), CV_8UC3, bkColor);
+    Mat res(img.size(), CV_8UC3, bkColor);
 	
     // 只考贝 img 中由 maskBin 标识的前景数据到 res
-    img->copyTo(res, maskBin);
+    img.copyTo(res, maskBin);
 
     static std::vector<uchar> buf(1);
     
@@ -528,155 +501,266 @@ DART_API unsigned char *remove_background_last(uint8_t *imgMat,int32_t *imgLengt
     return buf.data();
 }
 
-
-// DART_API unsigned char *remove_background(uint8_t *imgMat,int32_t *imgLengthBytes,int32_t x,int32_t y,int32_t width,int32_t height){
-// //    const Scalar GREEN = Scalar(0,255,0);
-//     Mat bgdModel, fgdModel;
-// //	Mat binMask;
-//     Mat mask;
-//     Rect rect;
-//     rect.x = x;
-//     rect.y = y;
-//     rect.width = width;
-//     rect.height = height;
-//     Mat *img = opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes);
-//     // if (img == nullptr || img->data == nullptr){
-// 	mask.create(img->size(), CV_8UC1);
-// 	mask.setTo(GC_BGD);
-// 	// setRectInMask();
-// 	mask(rect).setTo(Scalar(GC_PR_FGD));
-// 	// rectangle(*img, Point(x, y), Point(x + width, y + height ), GREEN, 2);
-// 	// img = opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes);
-// 	// image = imread( filename, 1 );
-// 	grabCut(*img, mask, rect, bgdModel, fgdModel, 1, GC_INIT_WITH_RECT);
-// //	getBinMask(mask, binMask);
-//     // compare(mask, GC_PR_FGD, mask, CMP_EQ);
-//      mask = mask&1;
-//     Mat res(img->size(), CV_8UC3, Scalar(255, 255, 255));
-// 	img->copyTo(res, mask);
-// 	// img->copyTo(res, mask);
-//     static std::vector<uchar> buf(1);
-    
-//     imencode(".png", res, buf);
-  
-//     *imgLengthBytes = (int32_t)buf.size();
-//     return buf.data();
+// void _get_role_image(uint8_t *imgMat,int32_t *imgLengthBytes,RectI *recti,Mat& result){
+//     Mat dimg;
+//     opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes,dimg);
+//     Rect r = Rect(max(0,recti->x),max(0,recti->y),recti->width,recti->height);
+//     Mat roleMask = Mat(mask,r).clone();
+//     Mat dst = Mat(dimg,r).clone();
+//     Mat res(dst.size(), CV_8UC3, bkColor);
+//     dst.copyTo(res,roleMask&1);
+//     result = res;
 // }
 
-DART_API unsigned char *remove_background1(uint8_t *imgMat,int32_t *imgLengthBytes){
-//    const Scalar GREEN = Scalar(0,255,0);
-    Mat bgdModel, fgdModel;
-	Mat binMask, res;
-    Mat *img = opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes);
-    if (img == nullptr || img->data == nullptr){
-        printf( "could not load image...\n");
+DART_API unsigned char *get_role_image(uint8_t *imgMat,int32_t *imgLengthBytes,RectI *recti){
+    Mat dimg;
+    opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes,dimg);
+    if (dimg.data == nullptr)
         return nullptr;
-    }
+    // Mat res;
+    // _get_role_image(imgMat,recti,res);
+    Rect r = Rect(max(0,recti->x),max(0,recti->y),recti->width,recti->height);
+    Mat roleMask = Mat(mask,r).clone();
+    Mat dst = Mat(dimg,r).clone();
+    cvtColor(dst,dst,COLOR_BGR2BGRA);
+    Mat res(dst.size(),CV_8UC4,Scalar(255,255,255,0));
+    // Mat res(dst.size(), CV_8UC3, bkColor);
+    dst.copyTo(res,roleMask&1);
 
-    // 将二维图像数据线性化
-    Mat data;
-    for( int i = 0; i < img->rows; i++) { //像素点线性排列
-        for( int j = 0; j < img->cols; j++)
-        {
-            Vec3b point = img->at<Vec3b>(i, j);
-            Mat tmp = (Mat_< float>( 1, 3) << point[ 0], point[ 1], point[ 2]);
-            data.push_back(tmp);
-        }
-    }
-
-    // 使用K-means聚类
-    int numCluster = 4;
-    Mat labels;
-    TermCriteria criteria = TermCriteria(TermCriteria::EPS + TermCriteria::COUNT, 10, 0.1);
-    kmeans(data, numCluster, labels, criteria, 4, KMEANS_PP_CENTERS);
-
-    // 背景与手机二值化
-    Mat mask = Mat::zeros(img->size(), CV_8UC1);
-    int index = img->rows * 2+ 2; //获取点（2，2）作为背景色
-    int cindex = labels.at< int>(index);
-
-    /* 提取背景特征 */
-    for( int row = 0; row < img->rows; row++) {
-        for( int col = 0; col < img->cols; col++) {
-            index = row * img->cols + col;
-            int label = labels.at< int>(index);
-            if(label == cindex) { // 背景
-                mask.at<uchar>(row, col) = 0;
-            }
-            else{
-                mask.at<uchar>(row, col) = 255;
-            }
-        }
-    }
-    // imshow( "mask", mask);
-    // 腐蚀 + 高斯模糊：图像与背景交汇处高斯模糊化
-    Mat k = getStructuringElement(MORPH_RECT, Size( 3, 3), Point( -1, -1));
-    erode(mask, mask, k);
-    GaussianBlur(mask, mask, Size( 3, 3), 0, 0);
-
-    // 更换背景色以及交汇处融合处理
-    RNG rng( 12345) ;
-    Vec3b color; //设置的背景色
-    color[0] = 255; //rng.uniform(0, 255);
-    color[1] = 255; // rng.uniform(0, 255);
-    color[2] = 255; // rng.uniform(0, 255);
-    Mat result(img->size(), img->type());
-    double w = 0.0; //融合权重
-    int b = 0, g = 0, r = 0;
-    int b1 = 0, g1 = 0, r1 = 0;
-    int b2 = 0, g2 = 0, r2 = 0;
-    for( int row = 0; row < img->rows; row++) {
-        for( int col = 0; col < img->cols; col++) {
-            int m = mask.at<uchar>(row, col);
-            if(m == 255) {
-                result.at<Vec3b>(row, col) = img->at<Vec3b>(row, col); // 前景
-            }
-            else if(m == 0) {
-                result.at<Vec3b>(row, col) = color; // 背景
-            }
-            else{ /* 融合处理部分 */
-                w = m / 255.0;
-                b1 = img->at<Vec3b>(row, col)[0];
-                g1 = img->at<Vec3b>(row, col)[1];
-                r1 = img->at<Vec3b>(row, col)[2];
-                b2 = color[0];
-                g2 = color[1];
-                r2 = color[2];
-                b = b1 * w + b2 * (1.0- w);
-                g = g1 * w + g2 * (1.0- w);
-                r = r1 * w + r2 * (1.0- w);
-                result.at<Vec3b>(row, col)[0] = b;
-                result.at<Vec3b>(row, col)[1] = g;
-                result.at<Vec3b>(row, col)[2] = r;
-            }
-        }
-    }
-    static std::vector<uchar> buf(1);   
-    imencode(".png", result, buf);
+    static std::vector<uchar> buf(1); 
+    
+    imencode(".png", res, buf);
+  
     *imgLengthBytes = (int32_t)buf.size();
     return buf.data();
+}
+
+/// 把 roleImg 中的图象，按 rects 矩形数组中各矩形指定的位置和大小，贴进 backImg 相应的区域。
+/// 参数 roleImg - unit8_t 指针类型，指向角色图象数据
+///     imgLengthByte - int32_t 指针类型，指向包含角色图象数据字节长度的整数
+///     backImg - unit8_t 指针类型，指向背景图象数据
+///     backImgLengthByte - int32_t 指针类型，指向包含背景图象数据字节长度的整数
+///     rects - RectI* 类型，指定矩形数组，第一个指定源角色图象大小，其余的指定要刷入角色图象的位置和大小
+///     rectsCount - Int32_t 类型，指定矩形数量。
+DART_API unsigned char *draw_roles(uint8_t *roleImg,int32_t *imgLengthBytes,uint8_t *backImg,int32_t *backImgLengthBytes,RectI *rects,int32_t rectsCount){
+    Mat img,bgImg;
+    opencv_decodeImage(roleImg, (unsigned*)imgLengthBytes,img);
+    opencv_decodeImage(backImg, (unsigned*)backImgLengthBytes,bgImg);
+    Rect r = Rect(max(0,rects->x),max(0,rects->y),rects->width,rects->height);
+    Mat roleMask = Mat(mask,r).clone();
+    for(int i=1;i<rectsCount;i++){
+        RectI *p = rects+i;
+        Rect r = Rect(max(0,p->x),max(0,p->y),p->width,p->height);
+        Mat role,maskBin;
+        resize(img,role,r.size());
+        resize(roleMask&1,maskBin,r.size());
+        role.copyTo(bgImg(r), maskBin);
+    }
+
+     static std::vector<uchar> buf(1);
+    
+    imencode(".png", bgImg, buf);
+  
+    *imgLengthBytes = (int32_t)buf.size();
+    return buf.data();
+}
+ 
+/// 图像旋转
+void Rotate(const cv::Mat &srcImage, cv::Mat &dstImage, double angle, cv::Point2f center, double scale)
+{
+	cv::Mat M = cv::getRotationMatrix2D(center, angle, scale);//计算旋转的仿射变换矩阵 
+	cv::warpAffine(srcImage, dstImage, M, cv::Size(srcImage.cols, srcImage.rows));//仿射变换  
 }
 
 /// 旋转图象
 /// 参数 imgMat - uint8_t 指针类型，指定图象
 ///     imgLengthBytes - int32_t 指针类型，指向图象字节数
+///     direction - int32_t 类型，指定旋转码 -1 - 逆时针旋转90度，0 - 旋转180度，1 - 顺时针旋转90度
 /// 返回 unsigned char 指针类型，指定矩形区域图象（矩形区域外的图象被裁剪）
 DART_API unsigned char *rotate_image(
         uint8_t *imgMat,
-        int32_t *imgLengthBytes){
+        int32_t *imgLengthBytes,
+        int32_t direction){
     
-    Mat *dimg = opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes);
-    if (dimg == nullptr || dimg->data == nullptr)
+    Mat dimg;
+    opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes,dimg);
+    if (dimg.empty() || dimg.data == nullptr)
         return nullptr;
     Mat dst;
-    rotate(*dimg,dst,ROTATE_90_CLOCKWISE);
+    int rotateCode;
+    switch (direction)
+    {
+    case -1:
+       rotateCode = ROTATE_90_COUNTERCLOCKWISE;
+        break;
+    case 0:
+        rotateCode = ROTATE_180;
+    case 1:
+        rotateCode = ROTATE_90_CLOCKWISE;
+    default:
+        rotateCode = ROTATE_90_CLOCKWISE;
+        break;
+    }
+    rotate(dimg,dst,rotateCode);
     static std::vector<uchar> buf(1); 
     
     imencode(".png", dst, buf);
   
     *imgLengthBytes = (int32_t)buf.size();
-    free(dimg);
-    dimg = nullptr;
+    return buf.data();
+}
+
+/// 复制区域图象
+/// 参数 imgMat - uint8_t 指针类型，指定图象
+///     imgLengthBytes - int32_t 指针类型，指向图象字节数
+/// 返回 unsigned char 指针类型，指定矩形区域图象（矩形区域外的图象被裁剪）
+DART_API unsigned char *copy_image(
+        uint8_t *imgMat,
+        int32_t *imgLengthBytes,
+        RectI *recti){
+    
+    Mat dimg;
+    opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes,dimg);
+    if (dimg.data == nullptr)
+        return nullptr;
+    
+    Rect r = Rect(max(0,recti->x),max(0,recti->y),recti->width,recti->height);
+    Mat dst = Mat(dimg,r).clone();
+    static std::vector<uchar> buf(1); 
+    
+    imencode(".png", dst, buf);
+  
+    *imgLengthBytes = (int32_t)buf.size();
+    return buf.data();
+}
+
+/// 复制区域图象
+/// 参数 imgMat - uint8_t 指针类型，指定图象
+///     imgLengthBytes - int32_t 指针类型，指向图象字节数
+/// 返回 unsigned char 指针类型，指定矩形区域图象（矩形区域外的图象被裁剪）
+DART_API unsigned char *fill_color(
+        uint8_t *imgMat,
+        int32_t *imgLengthBytes,
+        RectI *recti,
+        int32_t color){
+    
+    Mat dimg;
+    opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes,dimg);
+    if (dimg.data == nullptr)
+        return nullptr;
+    
+    Rect r = Rect(max(0,recti->x),max(0,recti->y),recti->width,recti->height);
+    vector<Point>  contour;
+    contour.push_back(r.tl());
+    contour.push_back(Point(r.tl().x + r.width , r.tl().y ) );
+    contour.push_back(Point(r.tl().x + r.width , r.tl().y + r.height));
+    contour.push_back(Point(r.tl().x , r.tl().y + r.height ));
+
+    cv::fillConvexPoly(dimg, contour, dimg.at<Vec3b>(2, 2));//fillPoly函数的第二个参数是二维数组！！
+
+    static std::vector<uchar> buf(1); 
+    
+    imencode(".png", dimg, buf);
+  
+    *imgLengthBytes = (int32_t)buf.size();
+    return buf.data();
+}
+
+/// 复制区域图象
+/// 参数 imgMat - uint8_t 指针类型，指定图象
+///     imgLengthBytes - int32_t 指针类型，指向图象字节数
+/// 返回 unsigned char 指针类型，指定矩形区域图象（矩形区域外的图象被裁剪）
+DART_API unsigned char *fill_image(
+        uint8_t *imgMat,
+        int32_t *imgLengthBytes,
+        RectI *recti,
+        uint8_t *fillImg,
+        int32_t fillImgLengthBytes){
+    
+    // 处理待填充图像
+    Mat dimg;
+    opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes,dimg);
+    if (dimg.data == nullptr)
+        return nullptr;
+    
+    // 处理待复制图片
+    Mat roi;
+    opencv_decodeImage(fillImg, (unsigned*)&fillImgLengthBytes,roi);
+    if (roi.data == nullptr)
+        return nullptr;
+    
+    // 设置绘制区域并复制
+    Rect r = Rect(max(0,recti->x),max(0,recti->y),roi.cols,roi.rows);
+    roi.copyTo(dimg(r));
+
+    // 转换为字节编码并返回
+    static std::vector<uchar> buf(1); 
+    imencode(".png", dimg, buf);
+    *imgLengthBytes = (int32_t)buf.size();
+    return buf.data();
+}
+
+/// 摆正区域图象
+/// 参数 imgMat - uint8_t 指针类型，指定图象
+///     imgLengthBytes - int32_t 指针类型，指向图象字节数
+///     ptArray = FPointArray 类型，指定要摆正的图象区域
+/// 返回 unsigned char 指针类型，包含被摆正后的图象字节数据
+DART_API unsigned char *straight_image(
+        uint8_t *imgMat,
+        int32_t *imgLengthBytes,
+        FPoint *ptArray
+        ){
+    
+    // 处理待填充图像
+    Mat dimg,mask;
+    opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes,dimg);
+    if (dimg.data == nullptr)
+        return nullptr;
+
+    mask.create(dimg.size(), CV_8UC1);
+    mask.setTo(GC_BGD);
+    Point pts[1][4];
+    for(int i=0;i<4;i++){
+        pts[0][i] = Point(ptArray[i].x,ptArray[i].y);
+    }
+    const Point* ppt[1]={pts[0]};
+    int npt[] = {4};
+    fillPoly(mask,ppt,npt,1,Scalar(GC_FGD));
+    // mask(rect).setTo(Scalar(GC_PR_FGD));
+    Mat maskBin = mask&1;
+
+    // 新建与原图相同尺寸，且颜色为 color 指定的8位3通道图像
+    Mat res(dimg.size(), CV_8UC3, dimg.at<Vec3b>(2, 2)),dst;
+	Mat res1 = res.clone();
+    // 只考贝 dimg 中由 maskBin 标识的前景数据到 res
+    dimg.copyTo(res, maskBin);
+    // 考贝后，考贝的区域填充背景色
+    res1.copyTo(dimg,maskBin);
+
+    // 旋转（摆正）图象
+    double hx = ptArray[3].x-ptArray[0].x;
+    double hy = ptArray[3].y-ptArray[0].y;
+    double angle = atan2(hy,hx);
+    cv::Point2f center((ptArray[0].x+ptArray[2].x)/2.0,(ptArray[0].y+ptArray[2].y)/2.0);
+    Rotate(res,dst,angle*180.0/M_PI-90.0,center,1.0);
+
+    // 计算旋转后摆正区域矩形
+    double wx = ptArray[1].x-ptArray[0].x;
+    double wy = ptArray[1].y-ptArray[0].y;
+    double rw = sqrt(wx*wx+wy*wy);
+    double rh = sqrt(hx*hx+hy*hy);
+    Rect r = Rect(center.x-rw/2.0,center.y-rh/2.0,rw,rh);
+
+    // 获取摆正矩形区域图象
+    dst = Mat(dst,r).clone();
+    
+    // 复制摆正矩形区域图象到原图
+    dst.copyTo(dimg(r));
+
+    // 转换为字节编码并返回
+    static std::vector<uchar> buf(1); 
+    imencode(".png", dimg, buf);
+    *imgLengthBytes = (int32_t)buf.size();
     return buf.data();
 }
 
@@ -687,18 +771,18 @@ DART_API unsigned char *rotate_image(
 ///     aspectRatio - double_t 类型，指定矩形的长宽比
 /// 返回 unsigned char 指针类型，指定矩形区域图象（矩形区域外的图象被裁剪）
 DART_API unsigned char *square_image(
-        int32_t *imgLengthBytes, 
+        int32_t *imgLengthBytes,
         FPoint *pts,
         double_t aspectRatio=21.0/29.7) {
     
-    if (src == nullptr || src->data == nullptr)
+    if (srcImg.data == nullptr)
         return nullptr;
-    Mat src1 =(*src).clone();
+    Mat src1 =srcImg.clone();
     square_quadrangle(src1,pts,aspectRatio);
-    static std::vector<uchar> buf(1); 
+    static std::vector<uchar> buf(1);
     
     imencode(".png", src1, buf);
   
-    *imgLengthBytes = (int32_t)buf.size();
+    *imgLengthBytes = buf.size();
     return buf.data();
 }

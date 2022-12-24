@@ -2,7 +2,7 @@ PODS:
   - Flutter (1.0.0)
   - native_opencv (0.0.1):
     - Flutter
-    - OpenCV (~> 4.1)
+    - OpenCV (~> 4.3.0)
   - OpenCV (4.3.0)
 
 DEPENDENCIES:
@@ -20,10 +20,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/native_opencv/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
-  native_opencv: 64adac35987921be1e17feeda92e6398249b8266
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  native_opencv: 56a5b9398ce4e8f0c8bf5323b2e6905d904d3333
   OpenCV: 681e0451c1e54c5930a8922277f817ed5d5ab459
 
-PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
 
 COCOAPODS: 1.11.2

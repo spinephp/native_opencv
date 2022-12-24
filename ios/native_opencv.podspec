@@ -22,5 +22,5 @@ A new flutter plugin project.
   s.swift_version = '5.0'
 
   s.static_framework = true
-  s.dependency 'OpenCV', '~> 4.1'
+  s.dependency 'OpenCV', '~> 4.3.0'
 end

@@ -4,10 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:native_opencv/utils/physisal_type.dart';
 import 'package:native_opencv/utils/size_input.dart';
-// import 'package:zhengda_health/app/custom_widgets/custom_text.dart';
-// import 'package:zhengda_health/app/http_util/http_api.dart';
-// import 'package:zhengda_health/app/http_util/http_util.dart';
-// import 'package:zhengda_health/app/support/app_color.dart';
 
 //省市区类型
 enum CityType { province, city, area }
@@ -117,9 +113,9 @@ class _CityAlertViewState extends State<CityAlertView> {
         models[1] = _threeList[2];
         models[2] = _threeList.length == 4 ? _threeList[3] : 0;
       }
+      Navigator.of(context).pop();
       widget.delegate?.confirmClick(models);
     }
-    Navigator.of(context).pop();
   }
 
   //取消

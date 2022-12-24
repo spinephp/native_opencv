@@ -4,6 +4,17 @@ typedef ListObjectCallback = void Function(List<Object> strData);
 class Reclassify {
   static const physisalTypes = [
     [
+      "Original sample",
+      [
+        [
+          null,
+          [
+            [null]
+          ]
+        ]
+      ]
+    ],
+    [
       "Paper",
       [
         [
@@ -97,17 +108,6 @@ class Reclassify {
             ["800X800", 800, 800],
             ["1000X1000", 1000, 1000],
             ["1200X1200", 1200, 1200],
-          ]
-        ]
-      ]
-    ],
-    [
-      "Original sample",
-      [
-        [
-          null,
-          [
-            [null]
           ]
         ]
       ]

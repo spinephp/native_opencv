@@ -38,11 +38,19 @@ final DynamicLibrary nativeAddLib = Platform.isMacOS || Platform.isIOS
     ? DynamicLibrary.process()
     : DynamicLibrary.open('libNativeAdd.${Platform.isWindows ? 'dll' : 'so'}');
 
-typedef NativeInitRectI = RectI Function(
-    Int32 x, Int32 y, Int32 width, Int32 height);
-typedef FFIInitRectI = RectI Function(int x, int y, int width, int height);
-FFIInitRectI initRectI =
-    nativeAddLib.lookupFunction<NativeInitRectI, FFIInitRectI>("init_recti");
+// typedef NativeInitRectI = RectI Function(
+//     Int32 x, Int32 y, Int32 width, Int32 height);
+// typedef FFIInitRectI = RectI Function(int x, int y, int width, int height);
+// FFIInitRectI initRectI =
+//     nativeAddLib.lookupFunction<NativeInitRectI, FFIInitRectI>("init_recti");
+
+final Pointer<FPoint> Function(int) createPoints = nativeAddLib
+    .lookup<NativeFunction<Pointer<FPoint> Function(Int32)>>('create_points')
+    .asFunction();
+
+final Pointer<RectI> Function(int) createRects = nativeAddLib
+    .lookup<NativeFunction<Pointer<RectI> Function(Int32)>>('create_rects')
+    .asFunction();
 
 final int Function(int x, int y) nativeAdd = nativeAddLib
     .lookup<NativeFunction<Int32 Function(Int32, Int32)>>('native_add')
@@ -67,12 +75,12 @@ FFICalc processImage =
     nativeAddLib.lookupFunction<NativeCalc, FFICalc>("process_image");
 
 final Pointer<Uint8> Function(
-        Pointer<Uint8>, Pointer<Int32>, Pointer<RectI>, int) removeBackground =
-    nativeAddLib
+        Pointer<Uint8>, Pointer<Int32>, Pointer<RectI>, int, int)
+    removeBackground = nativeAddLib
         .lookup<
             NativeFunction<
                 Pointer<Uint8> Function(Pointer<Uint8>, Pointer<Int32>,
-                    Pointer<RectI>, Int32)>>('remove_background')
+                    Pointer<RectI>, Int32, Int32)>>('remove_background')
         .asFunction();
 
 final Pointer<Uint8> Function(Pointer<Uint8>, Pointer<Int32>)
@@ -81,6 +89,20 @@ final Pointer<Uint8> Function(Pointer<Uint8>, Pointer<Int32>)
             NativeFunction<
                 Pointer<Uint8> Function(
                     Pointer<Uint8>, Pointer<Int32>)>>('remove_background_last')
+        .asFunction();
+
+final Pointer<Uint8> Function(Pointer<Uint8>, Pointer<Int32>, Pointer<Uint8>,
+        Pointer<Int32>, Pointer<RectI>, int) drawRoles =
+    nativeAddLib
+        .lookup<
+            NativeFunction<
+                Pointer<Uint8> Function(
+                    Pointer<Uint8>,
+                    Pointer<Int32>,
+                    Pointer<Uint8>,
+                    Pointer<Int32>,
+                    Pointer<RectI>,
+                    Int32)>>('draw_roles')
         .asFunction();
 
 // final Pointer<Uint8> Function(
@@ -100,6 +122,62 @@ typedef FFIRemoveBackground = Pointer<Uint8> Function(
 FFIRemoveBackground removeBackground1 =
     nativeAddLib.lookupFunction<NativeRemoveBackground, FFIRemoveBackground>(
         "remove_background1");
+
+// 查找函数符号 - copy_image
+final Pointer<Uint8> Function(Pointer<Uint8>, Pointer<Int32>, Pointer<RectI>)
+    getRoleImage = nativeAddLib
+        .lookup<
+            NativeFunction<
+                Pointer<Uint8> Function(Pointer<Uint8>, Pointer<Int32>,
+                    Pointer<RectI>)>>('get_role_image')
+        .asFunction();
+
+// 查找函数符号 - copy_image
+final Pointer<Uint8> Function(Pointer<Uint8>, Pointer<Int32>, Pointer<RectI>)
+    copyImage = nativeAddLib
+        .lookup<
+            NativeFunction<
+                Pointer<Uint8> Function(Pointer<Uint8>, Pointer<Int32>,
+                    Pointer<RectI>)>>('copy_image')
+        .asFunction();
+
+// 查找函数符号 - fill_color
+final Pointer<Uint8> Function(
+        Pointer<Uint8>, Pointer<Int32>, Pointer<RectI>, int) fillColor =
+    nativeAddLib
+        .lookup<
+            NativeFunction<
+                Pointer<Uint8> Function(Pointer<Uint8>, Pointer<Int32>,
+                    Pointer<RectI>, Int32)>>('fill_color')
+        .asFunction();
+
+// 查找函数符号 - fill_image
+final Pointer<Uint8> Function(
+        Pointer<Uint8>, Pointer<Int32>, Pointer<RectI>, Pointer<Uint8>, int)
+    fillImage = nativeAddLib
+        .lookup<
+            NativeFunction<
+                Pointer<Uint8> Function(Pointer<Uint8>, Pointer<Int32>,
+                    Pointer<RectI>, Pointer<Uint8>, Int32)>>('fill_image')
+        .asFunction();
+
+// 查找函数符号 - rotate_image
+final Pointer<Uint8> Function(Pointer<Uint8>, Pointer<Int32>, int) rotateImage =
+    nativeAddLib
+        .lookup<
+            NativeFunction<
+                Pointer<Uint8> Function(
+                    Pointer<Uint8>, Pointer<Int32>, Int32)>>('rotate_image')
+        .asFunction();
+
+// 查找函数符号 - straight_image
+final Pointer<Uint8> Function(Pointer<Uint8>, Pointer<Int32>, Pointer<FPoint>)
+    straightImage = nativeAddLib
+        .lookup<
+            NativeFunction<
+                Pointer<Uint8> Function(Pointer<Uint8>, Pointer<Int32>,
+                    Pointer<FPoint>)>>('straight_image')
+        .asFunction();
 
 // 查找函数符号 - square_image
 typedef NativeSquareImage = Pointer<Uint8> Function(
