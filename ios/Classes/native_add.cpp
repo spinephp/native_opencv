@@ -519,7 +519,8 @@ DART_API unsigned char *get_role_image(uint8_t *imgMat,int32_t *imgLengthBytes,R
         return nullptr;
     // Mat res;
     // _get_role_image(imgMat,recti,res);
-    Rect r = Rect(max(0,recti->x),max(0,recti->y),recti->width,recti->height);
+    // Rect r = Rect(max(0,recti->x),max(0,recti->y),recti->width,recti->height);
+    Rect r = boundingRect(mask);
     Mat roleMask = Mat(mask,r).clone();
     Mat dst = Mat(dimg,r).clone();
     cvtColor(dst,dst,COLOR_BGR2BGRA);
@@ -532,6 +533,10 @@ DART_API unsigned char *get_role_image(uint8_t *imgMat,int32_t *imgLengthBytes,R
     imencode(".png", res, buf);
   
     *imgLengthBytes = (int32_t)buf.size();
+    recti->x = r.x;
+    recti->y = r.y;
+    recti->width = r.width;
+    recti->height = r.height;
     return buf.data();
 }
 
