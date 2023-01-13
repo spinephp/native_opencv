@@ -132,6 +132,15 @@ final Pointer<Uint8> Function(Pointer<Uint8>, Pointer<Int32>, Pointer<RectI>)
                     Pointer<RectI>)>>('get_role_image')
         .asFunction();
 
+// 查找函数符号 - resize_image
+final Pointer<Uint8> Function(Pointer<Uint8>, Pointer<Int32>, Pointer<RectI>)
+    resizeImage = nativeAddLib
+        .lookup<
+            NativeFunction<
+                Pointer<Uint8> Function(Pointer<Uint8>, Pointer<Int32>,
+                    Pointer<RectI>)>>('resize_image')
+        .asFunction();
+
 // 查找函数符号 - copy_image
 final Pointer<Uint8> Function(Pointer<Uint8>, Pointer<Int32>, Pointer<RectI>)
     copyImage = nativeAddLib

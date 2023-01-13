@@ -501,17 +501,6 @@ DART_API unsigned char *remove_background_last(uint8_t *imgMat,int32_t *imgLengt
     return buf.data();
 }
 
-// void _get_role_image(uint8_t *imgMat,int32_t *imgLengthBytes,RectI *recti,Mat& result){
-//     Mat dimg;
-//     opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes,dimg);
-//     Rect r = Rect(max(0,recti->x),max(0,recti->y),recti->width,recti->height);
-//     Mat roleMask = Mat(mask,r).clone();
-//     Mat dst = Mat(dimg,r).clone();
-//     Mat res(dst.size(), CV_8UC3, bkColor);
-//     dst.copyTo(res,roleMask&1);
-//     result = res;
-// }
-
 DART_API unsigned char *get_role_image(uint8_t *imgMat,int32_t *imgLengthBytes,RectI *recti){
     Mat dimg;
     opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes,dimg);
@@ -533,10 +522,14 @@ DART_API unsigned char *get_role_image(uint8_t *imgMat,int32_t *imgLengthBytes,R
     imencode(".png", res, buf);
   
     *imgLengthBytes = (int32_t)buf.size();
+
+    // return role rect
     recti->x = r.x;
     recti->y = r.y;
     recti->width = r.width;
     recti->height = r.height;
+
+    // return role image
     return buf.data();
 }
 
@@ -570,6 +563,29 @@ DART_API unsigned char *draw_roles(uint8_t *roleImg,int32_t *imgLengthBytes,uint
     return buf.data();
 }
  
+/// 图象缩放
+DART_API unsigned char *resize_image(
+    uint8_t *imgMat,
+    int32_t *imgLengthBytes,
+    RectI *recti){
+    
+    Mat dimg;
+    opencv_decodeImage(imgMat, (unsigned*)imgLengthBytes,dimg);
+    if (dimg.data == nullptr)
+        return nullptr;
+    
+    Rect r = Rect(recti->x,recti->y,recti->width,recti->height);
+    Mat dst;
+    resize(dimg,dst,r.size());
+
+    static std::vector<uchar> buf(1); 
+    
+    imencode(".png", dst, buf);
+  
+    *imgLengthBytes = (int32_t)buf.size();
+    return buf.data();
+}
+
 /// 图像旋转
 void Rotate(const cv::Mat &srcImage, cv::Mat &dstImage, double angle, cv::Point2f center, double scale)
 {
