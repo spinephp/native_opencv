@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:native_opencv/utils/physisal_type.dart';
@@ -50,7 +48,7 @@ class _CityAlertViewState extends State<CityAlertView> {
           _areaList = listThrees;
           _listThree.clear();
           for (var element in _areaList) {
-            _listThree.add((element as List)[0]);
+            _listThree.add((element as List)[0] ?? '');
           }
           setState(() {});
         });

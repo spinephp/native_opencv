@@ -6,9 +6,9 @@ cmake_minimum_required(VERSION 3.4.1)
 
 # 项目名称
 if (CMAKE_SYSTEM_NAME MATCHES "Windows") 
-    set(PROJECT_NAME "libNativeAdd")
+    set(PROJECT_NAME "libnative_opencv")
 else()
-    set(PROJECT_NAME "NativeAdd")
+    set(PROJECT_NAME "native_opencv")
 endif()
 
 project(${PROJECT_NAME} LANGUAGES C CXX)

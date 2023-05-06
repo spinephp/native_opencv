@@ -6,6 +6,8 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        // maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
+        // maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
     }
 
     dependencies {
@@ -25,7 +27,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -41,7 +43,7 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
         ndkVersion '21.4.7075529'
         // ndkVersion '24.0.8215888'

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:ffi';
-import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:ffi/ffi.dart';
@@ -10,9 +9,6 @@ import 'dart:ui' as ui;
 import 'package:native_opencv/native_opencv.dart';
 import 'package:native_opencv/utils/city_picker.dart';
 import 'package:native_opencv/utils/adjustment_area.dart';
-import 'package:seene_measure/utils/widgets.dart';
-import 'package:seene_measure/pages/update_background_page.dart';
-import 'package:seene_measure/pages/object_edit_page.dart';
 
 class ClipAreaPainter extends CustomPainter {
   final List<Offset> offsets;
@@ -114,6 +110,65 @@ class ForeRectPainter extends CustomPainter {
   }
 }
 
+class ImagePainter extends CustomPainter {
+  ui.Image? image;
+  final Rect? selectedRect;
+  // final Roles? roles;
+  // final Parts? parts;
+  ImagePainter(this.image, {this.selectedRect = null});
+
+  @override
+  void paint(Canvas canvas, ui.Size size) {
+    Paint paint = Paint();
+    if (image != null) {
+      //draw the backgroud image
+      double dwidth = 0;
+      double dheight = 0;
+      final width = size.width;
+      final height = size.height;
+      final double imgWidth = image!.width.toDouble();
+      final double imgHeight = image!.height.toDouble();
+      final _swipWH = imgWidth / width > imgHeight / height;
+      final _ratioWH = imgWidth / imgHeight;
+      if (_swipWH) {
+        dwidth = width;
+        dheight = dwidth / _ratioWH;
+      } else {
+        dheight = height;
+        dwidth = dheight * _ratioWH;
+      }
+      final _imgRect = Rect.fromLTWH(0, 0, imgWidth, imgHeight);
+      canvas.drawImageRect(image!, _imgRect,
+          Rect.fromLTWH((width - dwidth) / 2.0, 0, dwidth, dheight), paint);
+    } else {
+      paint.color = Colors.white;
+      paint.style = PaintingStyle.fill;
+      canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paint);
+    }
+    if (selectedRect != null) {
+      paint.color = Colors.red;
+      paint.style = PaintingStyle.stroke;
+      canvas.drawRect(selectedRect!, paint);
+    }
+    // if (roles != null) {
+    //   paint.color = Colors.blue;
+    //   paint.style = PaintingStyle.stroke;
+
+    //   for (final item in parts!.parts) {
+    //     if (roles != null && roles!.imgs.length > item.index)
+    //       canvas.drawImageRect(roles!.imgs[item.index],
+    //           roles!.rects[item.index], item.rect, paint);
+    //     canvas.drawRect(item.rect, paint);
+    //   }
+    // }
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
+  }
+}
+
 typedef FinishCallback = void Function(
     double ratio, int entityUnit, Uint8List imgdata);
 
@@ -176,6 +231,13 @@ class _ImageAreaWidgetState extends State<ImageAreaWidget>
     bytes = null;
     malloc.free(imgLengthBytes);
     imgLengthBytes = null;
+  }
+
+// /// 通过 Uint8List 获取图片,该方法会降低图片分辨率真
+  Future<ui.Image> loadImageByUint8List(Uint8List list) async {
+    ui.Codec codec = await ui.instantiateImageCodec(list);
+    ui.FrameInfo frame = await codec.getNextFrame();
+    return frame.image;
   }
 
   Uint8List? imageSquare() {
@@ -308,25 +370,25 @@ class _ImageAreaWidgetState extends State<ImageAreaWidget>
       _btns.add(IconButton(
           icon: const Icon(Icons.photo_size_select_actual_outlined),
           onPressed: () async {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => UpdateBackgroundPage(
-                          imgbytes: _doneImg!,
-                          imgUnit: 0,
-                        ))).then((value) {
-              if (value != null) {
-                _doneImg = value;
-                loadImageByUint8List(_doneImg!).then((value1) {
-                  _image = value1;
-                  setState(() {
-                    // var _uint8list = Uint8List.fromList(item[4].fileCode(value));
-                    // item[4] = ImageFile(data: _uint8list);
-                    // saveFile(item[0] + ".smi", _uint8list);
-                  });
-                });
-              }
-            });
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => UpdateBackgroundPage(
+            //               imgbytes: _doneImg!,
+            //               imgUnit: 0,
+            //             ))).then((value) {
+            //   if (value != null) {
+            //     _doneImg = value;
+            //     loadImageByUint8List(_doneImg!).then((value1) {
+            //       _image = value1;
+            //       setState(() {
+            //         // var _uint8list = Uint8List.fromList(item[4].fileCode(value));
+            //         // item[4] = ImageFile(data: _uint8list);
+            //         // saveFile(item[0] + ".smi", _uint8list);
+            //       });
+            //     });
+            //   }
+            // });
             // setState(() {
             //   foreAreaOffsets.add(const Offset(0, 0));
             //   foreAreaOffsets.add(const Offset(0, 0));
@@ -442,7 +504,7 @@ class _ImageAreaWidgetState extends State<ImageAreaWidget>
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
-              title: Text('Select Object Area'),
+              title: const Text('Select Object Area'),
               actions: [
                 IconButton(
                     onPressed: () {
@@ -480,56 +542,56 @@ class _ImageAreaWidgetState extends State<ImageAreaWidget>
   }
 
   @override
-  void confirmClick(List<num?> models) async {
-    // 设置实体尺寸及单位(如纸张)
-    entityWidth = models[0]?.toDouble() ?? _image!.width.toDouble();
-    entityHeight = models[1]?.toDouble() ?? _image!.height.toDouble();
-    entityUnit = models[2]?.toInt() ?? 4;
-    _doneImg = models[0] != null ? imageSquare() : widget.uint8list;
-
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => ObjectEditPage(
-                  imgbytes: _doneImg,
-                  imgUnit: entityUnit,
-                ))).then((value) {
-      if (value != null) {
-        loadImageByUint8List(value).then((img) {
-          Navigator.of(context)
-              .pop([entityWidth / img.width, entityUnit, value]);
-          // widget.finishCallback(entityWidth / img.width, entityUnit, value);
-        });
-      } else {
-        isEditing = true;
-      }
-    });
-  }
   // void confirmClick(List<num?> models) async {
   //   // 设置实体尺寸及单位(如纸张)
   //   entityWidth = models[0]?.toDouble() ?? _image!.width.toDouble();
   //   entityHeight = models[1]?.toDouble() ?? _image!.height.toDouble();
   //   entityUnit = models[2]?.toInt() ?? 4;
-
-  //   // if (models[0] != null) {
   //   _doneImg = models[0] != null ? imageSquare() : widget.uint8list;
-  //   _image = await loadImageByUint8List(_doneImg!);
 
-  //   // 如实体长短边与图象长短边不对应，则调交换实体两个边使其相对应
-  //   if (_image != null) {
-  //     print(
-  //         "image width: ${_image!.width} image height: ${_image!.height}\n entity width: $entityWidth, entity height: $entityHeight");
-  //     if ((_image!.width > _image!.height && entityWidth < entityHeight) ||
-  //         (_image!.width < _image!.height && entityWidth > entityHeight)) {
-  //       final _tem = entityHeight;
-  //       entityHeight = entityWidth;
-  //       entityWidth = _tem;
-  //     }
+  // Navigator.push(
+  //     context,
+  //     MaterialPageRoute(
+  //         builder: (context) => ObjectEditPage(
+  //               imgbytes: _doneImg,
+  //               imgUnit: entityUnit,
+  //             ))).then((value) {
+  //   if (value != null) {
+  //     loadImageByUint8List(value).then((img) {
+  //       Navigator.of(context)
+  //           .pop([entityWidth / img.width, entityUnit, value]);
+  //       // widget.finishCallback(entityWidth / img.width, entityUnit, value);
+  //     });
+  //   } else {
+  //     isEditing = true;
   //   }
-  //   _bkOffset = List.from(offsets);
-  //   offsets.clear();
-  //   // }
-  //   setState(() {});
-  //   // debugPrint("选择index为$index,选择的内容为$str");
+  // });
   // }
+  void confirmClick(List<num?> models) async {
+    // 设置实体尺寸及单位(如纸张)
+    entityWidth = models[0]?.toDouble() ?? _image!.width.toDouble();
+    entityHeight = models[1]?.toDouble() ?? _image!.height.toDouble();
+    entityUnit = models[2]?.toInt() ?? 4;
+
+    // if (models[0] != null) {
+    _doneImg = models[0] != null ? imageSquare() : widget.uint8list;
+    _image = await loadImageByUint8List(_doneImg!);
+
+    // 如实体长短边与图象长短边不对应，则调交换实体两个边使其相对应
+    if (_image != null) {
+      print(
+          "image width: ${_image!.width} image height: ${_image!.height}\n entity width: $entityWidth, entity height: $entityHeight");
+      if ((_image!.width > _image!.height && entityWidth < entityHeight) ||
+          (_image!.width < _image!.height && entityWidth > entityHeight)) {
+        final _tem = entityHeight;
+        entityHeight = entityWidth;
+        entityWidth = _tem;
+      }
+    }
+    _bkOffset = List.from(offsets);
+    offsets.clear();
+    // }
+    setState(() {});
+    // debugPrint("选择index为$index,选择的内容为$str");
+  }
 }

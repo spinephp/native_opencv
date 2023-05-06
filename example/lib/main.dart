@@ -8,7 +8,7 @@ import 'package:native_opencv/native_opencv.dart';
 import 'package:native_opencv/utils/picker_area.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(home: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -86,27 +86,29 @@ class _MyAppState extends State<MyApp> {
         ),
         body: uint8list == null
             ? const Text("waiting...")
-            : Stack(children: [
-                // Image.memory(uint8list!),
-                // DraggableWidget(
-                //   image: _image,
-                //   widgetcolor: Colors.tealAccent,
-                // ),
-                ImageAreaWidget(
-                  uint8list: uint8list,
-                  finishCallback: (ratio, unit, uint8listImg) {
-                    debugPrint("ratio: $ratio, unit: ${[
-                      "mm",
-                      "cm",
-                      "m",
-                      "km"
-                    ][unit]}");
-                  },
-                ),
-                // uint8list1 == null
-                //     ? const Text("waiting...")
-                //     : Expanded(child: Image.memory(uint8list1!))
-              ]),
+            : TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext ctx) => ImageAreaWidget(
+                        uint8list: uint8list,
+                        // finishCallback: (ratio, unit, uint8listImg) {
+                        //   debugPrint("ratio: $ratio, unit: ${[
+                        //     "mm",
+                        //     "cm",
+                        //     "m",
+                        //     "km"
+                        //   ][unit]}");
+                        // },
+                      ),
+                    ),
+                  );
+                },
+                child: Text("Select image")),
+        // uint8list1 == null
+        //     ? const Text("waiting...")
+        //     : Expanded(child: Image.memory(uint8list1!))
       ),
     );
   }

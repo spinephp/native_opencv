@@ -34,9 +34,36 @@ class RectI extends Struct {
         ..height = height;
 }
 
+// Future<DynamicLibrary> _getNativeAppTokenLibrary() async => Platform.isAndroid
+//     ? await _getAndroidDynamicLibrary('libnative_opencv.${Platform.isWindows ? 'dll' : 'so'}')
+//     : DynamicLibrary.process();
+
+// Future<DynamicLibrary> _getAndroidDynamicLibrary(String libraryName) async {
+//   try {
+//     return DynamicLibrary.open(libraryName);
+//   } catch (_) {
+//     try {
+//       final String? nativeLibraryDirectory = await _getNativeLibraryDirectory();
+
+//       return DynamicLibrary.open('$nativeLibraryDirectory/$libraryName');
+//     } catch (_) {
+//       try {
+//         final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+//         final String packageName = packageInfo.packageName;
+
+//         return DynamicLibrary.open('/data/data/$packageName/lib/$libraryName');
+//       } catch (_) {
+//         rethrow;
+//       }
+//     }
+//   }
+// }
+
+// final DynamicLibrary nativeAddLib =  getNativeAppTokenLibrary();
 final DynamicLibrary nativeAddLib = Platform.isMacOS || Platform.isIOS
     ? DynamicLibrary.process()
-    : DynamicLibrary.open('libNativeAdd.${Platform.isWindows ? 'dll' : 'so'}');
+    : DynamicLibrary.open(
+        'libnative_opencv.${Platform.isWindows ? 'dll' : 'so'}');
 
 // typedef NativeInitRectI = RectI Function(
 //     Int32 x, Int32 y, Int32 width, Int32 height);
